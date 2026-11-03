@@ -482,3 +482,12 @@ body, .card, footer, .cinema-modal-container {
     transition-duration: 0.01ms !important;
   }
 }
+
+.booking-actions > .btn {
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+}
+
+.booking-actions > [type="submit"] {
+  min-width: 200px;
+}

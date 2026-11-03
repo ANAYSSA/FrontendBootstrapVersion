@@ -25,8 +25,8 @@ The booking and VIP forms simulate a server delay. They do not send email, charg
 
 ## Deployment
 
-Updated preview: https://ANAYSSA.github.io/FrontendBootstrapVersion/
+Deployed website: https://d0kus.github.io/FrontendBootstrapVersion/
 
 Original team repository: https://github.com/d0kus/FrontendBootstrapVersion
 
-After the pull request is merged, GitHub Pages can deploy the team's updated `main` branch at https://d0kus.github.io/FrontendBootstrapVersion/.
+GitHub Pages serves the team project from the shared repository's `main` branch.
