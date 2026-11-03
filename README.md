@@ -1,100 +1,32 @@
-# 🎬 404 Cinema &bull; Next-Gen Movie Theater
+# 404 Cinema - Assignment 6
 
-[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
-[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
-[![Bootstrap 5](https://img.shields.io/badge/Bootstrap_5.3.3-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
-[![GitHub Pages](https://img.shields.io/badge/Live_Demo-GitHub_Pages-success?style=for-the-badge&logo=github)](https://d0kus.github.io/FrontendBootstrapVersion/)
+404 Cinema Team, SE-2507: Diyar Umarov, Aibek Mukhat, Anuar Muratbay.
 
-> **Astana IT University** &bull; **Group:** SE-2507  
-> **Course:** Web Technologies / Frontend Development  
-> **Project:** Midterm Project &bull; Cinema Ticket Reservation System
+## Run
 
----
+Open `index.html`, or serve the folder with `python3 -m http.server 8000` and visit `http://localhost:8000`. No build or npm installation is required. jQuery 4.0.0 is included from its CDN in the head, with a bundled fallback. Bootstrap 5.3.3, images, CSS and scripts are included locally.
 
-## 🌐 Live Website (GitHub Pages)
+## Assignment 6
 
-🔗 **Live Link:** [https://d0kus.github.io/FrontendBootstrapVersion/](https://d0kus.github.io/FrontendBootstrapVersion/)
+- Task 0: jQuery setup and the `jQuery is ready!` console message.
+- Tasks 1-3: movie search, keyboard-accessible suggestions and safe text highlighting; searchable FAQs.
+- Tasks 4-5: gradient scroll progress and counters that animate when visible.
+- Tasks 6-7: validated forms with a disabled pending state, spinner and temporary notifications.
+- Task 8: copy reservation codes or the ticket support email, with a checkmark and tooltip.
+- Task 9: jQuery lazy loading for content images near the viewport.
 
----
+`js/script.js` contains the jQuery features; `js/main.js` keeps the previous JavaScript features and day/night switch. `js/schedule.js` combines the static weekly programme filters. `css/jquery.css` styles the added components.
 
-## 📖 Project Overview
+## Fixes carried forward from Assignment 5
 
-**404 Cinema** is a multi-page web platform for an ultra-modern premium movie theater featuring 4K dual-laser IMAX projection, Dolby Atmos spatial audio, and luxury VIP recliner seating. The project demonstrates responsive web layout using **Bootstrap 5.3.3** along with a dedicated showcase for **Pure CSS Media Queries**.
+Day/night mode persists across the six cinema pages. Clock time uses Asia/Almaty. Arrow navigation is scoped to the menu; rating stars support Enter/Space. The VIP dialog manages focus and Escape. Reset restores the booking form defaults. Movie card links preselect the chosen film.
 
----
+The booking and VIP forms simulate a server delay. They do not send email, charge payments, reserve real seats or create real accounts. The schedule is an explicitly labelled sample weekly programme. Do not enter real passwords.
 
-## 👥 Team Members & Page Distribution
+## Deployment
 
-According to project requirements, each team member is responsible for at least two complete HTML pages:
+Updated preview: https://ANAYSSA.github.io/FrontendBootstrapVersion/
 
-| Team Member | Role & Responsibilities | Assigned Pages | Interactive JS Features |
-| :--- | :--- | :--- | :--- |
-| **Umarov Diyar** | Main Landing Page, Hero Carousel & Cinema Auditorium Specs | 1. [`index.html`](index.html)<br>2. [`halls.html`](halls.html) | Form Validation, Format Filter (`switch`), Star Rating Widget |
-| **Aibek Mukhat** | Movie Timetable, Pricing Matrix & Pure CSS Media Queries Showcase | 1. [`schedule.html`](schedule.html)<br>2. [`pricing.html`](pricing.html)<br>3. [`media-queries.html`](media-queries.html) | Keyboard Navigation (`keydown` arrow keys on menu), FAQ Accordion & Modal |
-| **Anuar Muratbay** | Online Seat Booking System, About Us & Team Story | 1. [`booking.html`](booking.html)<br>2. [`about.html`](about.html) | Dynamic Highlights (`for` loop & Object), Async Callback Form, Sound Effects |
+Original team repository: https://github.com/d0kus/FrontendBootstrapVersion
 
----
-
-## ⚡ Interactive JavaScript Features (Assignment 5)
-
-1. **Format Filter (`switch` statement)** (`js/main.js`):
-   - Switch statement filtering movies by format (*All, IMAX 3D, Dolby Cinema, Standard 2D*).
-2. **Keyboard Menu Navigation (`keydown`)** (`js/main.js`):
-   - Arrow keys (`ArrowRight`, `ArrowLeft`) move focus between navigation links.
-3. **Star Rating Component (Attribute & DOM Manipulation)** (`js/main.js`):
-   - `querySelectorAll` selects 5 stars, click updates colors, rating score, and animation.
-4. **Objects, Methods, Arrays & Loops** (`js/main.js`):
-   - `cinemaInfo` object with methods and highlights array, rendered with a `for` loop.
-5. **Sound Effects (`Web Audio API`)** (`js/main.js`):
-   - Synthesized UI sound on button and star clicks.
-6. **Form Callbacks & Reset Button** (`js/main.js`):
-   - Asynchronous callback submission and instant form reset via `querySelectorAll`.
-
----
-
-## 📁 Project Architecture & Pages
-
-The application consists of **7 interconnected HTML pages**:
-
-1. **`index.html` (Home)** &mdash; Full-featured landing page featuring a 9-slide interactive Bootstrap carousel, cinema experience highlights, format filters, and a 6-movie premiere showcase.
-2. **`halls.html` (Halls & Tech)** &mdash; Detailed acoustic and visual technical breakdown for Hall 01 (IMAX Laser), Hall 02 (VIP Recliner Lounge), and Hall 03 (Dolby Atmos), followed by an architecture photo gallery.
-3. **`schedule.html` (Schedule)** &mdash; Daily movie showtime schedule with auditorium filters, status badges, format tags, and responsive timetable.
-4. **`pricing.html` (Pricing & Offers)** &mdash; Promotional tier cards (Student discount, Family matinee, Midnight rates), complete price matrix table, and transparent ticket refund policy.
-5. **`booking.html` (Booking)** &mdash; Responsive ticket reservation layout including hall preview cards, step-by-step instructions, seating tier selector, and concession combo options.
-6. **`about.html` (About Us)** &mdash; Cinema origin story, core values, team member profile cards, and departmental contact directory.
-7. **`media-queries.html` (Media Queries Demo)** &mdash; Dedicated assignment requirement demonstrating fluid responsive typography and multi-column card re-ordering built purely with CSS media queries without framework dependencies.
-
----
-
-## 🛠 Tech Stack & Implementation Details
-
-- **HTML5:** Semantic markup (`<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<aside>`, `<footer>`, `<figure>`).
-- **CSS3:**
-  - Modern CSS custom variables (`--cinema-orange: #f97316`, `--cinema-bg: #121316`, `--cinema-card: #1f222b`).
-  - Card hover micro-animations (`.hover-card` transform and glow).
-  - Pure CSS fluid typography scaling with screen indicator in `media-queries.css`.
-- **Bootstrap 5.3.3:**
-  - Responsive Grid System: `container`, `row`, `col-12`, `col-md-6`, `col-lg-4`, `g-4`.
-  - Components: `navbar` with mobile collapse toggler, `carousel` with crossfade, `table` with `table-responsive`, `card`, `badge`, `btn-group`.
-  - Dark Theme: Built-in `data-bs-theme="dark"` integrated with custom cinema color overrides.
-
----
-
-## 📱 Responsive Breakpoints
-
-The project has been tested and optimized across all major device widths:
-
-- **Mobile Phones (< 768px):** Single-column stacked layouts, touch-friendly tap targets, collapsed mobile navigation.
-- **Tablets (768px – 991px):** Two-column card rows, balanced table layouts.
-- **Laptops & Desktops (≥ 992px):** Three-column card displays, wide hero carousel banners, sticky navigation.
-
----
-
-## 🚀 How to Run Locally
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/d0kus/FrontendBootstrapVersion.git
-   ```
-2. Open the project folder in VS Code or your preferred editor.
-3. Open `index.html` directly in your browser or run with **Live Server**.
+After the pull request is merged, GitHub Pages can deploy the team's updated `main` branch at https://d0kus.github.io/FrontendBootstrapVersion/.

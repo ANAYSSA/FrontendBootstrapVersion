@@ -1,38 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 <head>
-  <!-- 
-    Authors: Umarov Diyar, Anuar Muratbay, Aibek Mukhat
-    Group: SE-2507
-  -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Movie Schedule - 404 Cinema</title>
 
-  <!-- Bootstrap connection -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="css/vendor/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-  <!-- Custom CSS  -->
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/jquery.css">
+  <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+  <script src="js/jquery-fallback.js"></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/script.js" defer></script>
+  <script src="js/schedule.js" defer></script>
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg">
 </head>
 <body class="bg-dark text-light d-flex flex-column min-vh-100">
+  <div id="scrollProgress" role="progressbar" aria-label="Page scroll progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+  <div id="siteToast" role="status" aria-live="polite"></div>
 
-  <!-- Main Navigation Bar & Header Utility -->
   <header class="sticky-top shadow">
-    <!-- Utility Bar: Live Clock & Theme Switcher -->
     <div class="bg-black border-bottom border-secondary border-opacity-25 py-1 px-3 small text-secondary">
       <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
-        <!-- Live Clock -->
         <div class="d-flex align-items-center gap-2" id="liveClock">
           <span class="clock-pulse-dot" title="Live Clock Active"></span>
           <span class="text-secondary small">Astana Time:</span>
           <span id="clockText" class="fw-semibold text-warning small">Loading time...</span>
         </div>
 
-        <!-- Theme Switcher -->
         <div class="d-flex align-items-center gap-2 ms-auto">
-          <button id="themeToggleBtn" type="button" class="btn btn-sm btn-outline-secondary text-light py-0 px-2" title="Click to switch background theme">
-            <span class="d-none d-sm-inline">Theme:</span> <span id="themeNameLabel" class="text-warning fw-bold">Obsidian Dark</span>
+          <button id="themeToggleBtn" type="button" class="btn btn-sm btn-outline-secondary text-light py-0 px-2" title="Switch between day and night">
+            <span class="d-none d-sm-inline">Theme:</span> <span id="themeNameLabel" class="text-warning fw-bold">Night</span>
           </button>
         </div>
       </div>
@@ -86,48 +85,41 @@
   <main class="flex-grow-1 py-4 py-lg-5">
     <div class="container">
 
-      <!-- Header Section -->
       <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
         <div>
-          <span class="badge bg-warning text-white text-uppercase px-3 py-1 fw-bold mb-2">Real-Time Schedule</span>
+          <span class="badge bg-warning text-white text-uppercase px-3 py-1 fw-bold mb-2">Sample Weekly Programme</span>
           <h1 class="display-6 fw-bold text-light mb-1">Movie Showtimes &amp; Sessions</h1>
-          <p class="text-secondary mb-0">Select your preferred movie, screening technology, and time slot.</p>
+          <p class="text-secondary mb-0">Static weekly demo. Filter the sample sessions by day group and auditorium.</p>
         </div>
 
-        <!-- Button Group for Day Filter -->
-        <div class="btn-group shadow-sm flex-wrap" role="group" aria-label="Schedule Day Filter">
-          <button type="button" class="btn btn-warning active fw-semibold text-white">Today</button>
-          <button type="button" class="btn btn-outline-secondary text-light">Tomorrow</button>
-          <button type="button" class="btn btn-outline-secondary text-light">Wednesday</button>
-          <button type="button" class="btn btn-outline-secondary text-light">Thursday</button>
-          <button type="button" class="btn btn-outline-secondary text-light">Weekend</button>
+        <div class="btn-group shadow-sm flex-wrap" role="group" aria-label="Schedule day filter">
+          <button type="button" class="btn btn-warning active fw-semibold text-white" data-schedule-period="all" aria-pressed="true">All week</button>
+          <button type="button" class="btn btn-outline-secondary text-light" data-schedule-period="weekdays" aria-pressed="false">Weekdays</button>
+          <button type="button" class="btn btn-outline-secondary text-light" data-schedule-period="weekend" aria-pressed="false">Weekend</button>
         </div>
       </div>
 
-      <!-- Bootstrap Grid (Sidebar col-lg-3 & Main Table col-lg-9) -->
       <div class="row g-4 align-items-start">
 
-        <!-- Sidebar (col-12 col-lg-3) -->
         <aside class="col-12 col-lg-3">
           <div class="card bg-secondary bg-opacity-10 border-secondary border-opacity-75 p-3 rounded-4 shadow-sm mb-4">
             <h5 class="text-warning fw-bold mb-3">Auditorium Filter</h5>
             <div class="d-flex flex-column gap-2">
-              <button class="btn btn-dark text-start border-secondary text-warning active">
+              <button type="button" class="btn btn-dark text-start border-secondary text-warning active" data-schedule-hall="all" aria-pressed="true">
                 All Auditoriums
               </button>
-              <button class="btn btn-dark text-start border-secondary text-light">
+              <button type="button" class="btn btn-dark text-start border-secondary text-light" data-schedule-hall="1" aria-pressed="false">
                 Hall 1: IMAX Laser
               </button>
-              <button class="btn btn-dark text-start border-secondary text-light">
+              <button type="button" class="btn btn-dark text-start border-secondary text-light" data-schedule-hall="2" aria-pressed="false">
                 Hall 2: VIP Lounge
               </button>
-              <button class="btn btn-dark text-start border-secondary text-light">
+              <button type="button" class="btn btn-dark text-start border-secondary text-light" data-schedule-hall="3" aria-pressed="false">
                 Hall 3: Dolby Atmos
               </button>
             </div>
           </div>
 
-          <!-- Student Deal Sidebar Callout -->
           <div class="card p-3 rounded-4 shadow-sm">
             <span class="badge bg-warning text-white mb-2 fw-bold w-fit">Student Deal</span>
             <h6 class="text-light fw-bold mb-1">25% Discount Available</h6>
@@ -138,11 +130,11 @@
           </div>
         </aside>
 
-        <!-- Main Schedule Table (col-12 col-lg-9) -->
         <div class="col-12 col-lg-9">
           <div class="card bg-secondary bg-opacity-10 border-secondary border-opacity-75 rounded-4 overflow-hidden shadow-sm">
             <div class="table-responsive">
               <table class="table table-dark table-hover align-middle mb-0">
+                <caption class="visually-hidden">Sample weekly cinema sessions; not a live booking inventory.</caption>
                 <thead class="table-black border-bottom border-warning">
                   <tr>
                     <th scope="col" class="py-3 px-3 text-warning">Poster</th>
@@ -155,17 +147,16 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <!-- Row 1 -->
-                  <tr>
+                  <tr class="schedule-row" data-hall="1" data-days="weekdays weekend">
                     <td class="px-3">
-                      <img src="images/dune.webp" alt="Dune 3" class="rounded-2 object-fit-cover shadow-sm" style="width: 55px; height: 75px;">
+                      <img decoding="async" src="images/placeholder.svg" data-src="images/dune.webp" alt="Dune 3" class="lazy-image rounded-2 object-fit-cover shadow-sm" style="width: 55px; height: 75px;">
                     </td>
                     <td>
                       <div class="fw-bold text-light">Dune: Part Three</div>
                       <div class="small text-secondary">Action / Sci-Fi &bull; 165 min</div>
                     </td>
                     <td><span class="badge bg-secondary">Hall 1 (IMAX)</span></td>
-                    <td class="fw-bold text-warning fs-5">14:30</td>
+                    <td><div class="fw-bold text-warning fs-5">14:30</div><div class="small text-secondary">Mon-Sun</div></td>
                     <td><span class="badge bg-warning text-white">3D IMAX</span></td>
                     <td class="fw-semibold">3,500 ₸</td>
                     <td class="px-3 text-end">
@@ -173,17 +164,16 @@
                     </td>
                   </tr>
 
-                  <!-- Row 2 -->
-                  <tr>
+                  <tr class="schedule-row" data-hall="3" data-days="weekdays">
                     <td class="px-3">
-                      <img src="images/backrooms.jpg" alt="Backrooms" class="rounded-2 object-fit-cover shadow-sm" style="width: 55px; height: 75px;">
+                      <img decoding="async" src="images/placeholder.svg" data-src="images/backrooms.jpg" alt="Backrooms" class="lazy-image rounded-2 object-fit-cover shadow-sm" style="width: 55px; height: 75px;">
                     </td>
                     <td>
                       <div class="fw-bold text-light">Backrooms</div>
                       <div class="small text-secondary">Horror / Mystery &bull; 110 min</div>
                     </td>
                     <td><span class="badge bg-secondary">Hall 3 (Dolby)</span></td>
-                    <td class="fw-bold text-warning fs-5">17:15</td>
+                    <td><div class="fw-bold text-warning fs-5">17:15</div><div class="small text-secondary">Mon-Fri</div></td>
                     <td><span class="badge bg-info text-dark">Standard 2D</span></td>
                     <td class="fw-semibold">1,800 ₸</td>
                     <td class="px-3 text-end">
@@ -191,17 +181,16 @@
                     </td>
                   </tr>
 
-                  <!-- Row 3 -->
-                  <tr>
+                  <tr class="schedule-row" data-hall="2" data-days="weekend">
                     <td class="px-3">
-                      <img src="images/fall.jpg" alt="Fall 2" class="rounded-2 object-fit-cover shadow-sm" style="width: 55px; height: 75px;">
+                      <img decoding="async" src="images/placeholder.svg" data-src="images/fall.jpg" alt="Fall 2" class="lazy-image rounded-2 object-fit-cover shadow-sm" style="width: 55px; height: 75px;">
                     </td>
                     <td>
                       <div class="fw-bold text-light">Fall 2: Deadpoint</div>
                       <div class="small text-secondary">Thriller / Survival &bull; 125 min</div>
                     </td>
                     <td><span class="badge bg-secondary">Hall 2 (VIP)</span></td>
-                    <td class="fw-bold text-warning fs-5">20:00</td>
+                    <td><div class="fw-bold text-warning fs-5">20:00</div><div class="small text-secondary">Sat-Sun</div></td>
                     <td><span class="badge bg-success text-white">2D ATMOS</span></td>
                     <td class="fw-semibold">2,500 ₸</td>
                     <td class="px-3 text-end">
@@ -209,17 +198,16 @@
                     </td>
                   </tr>
 
-                  <!-- Row 4 -->
-                  <tr>
+                  <tr class="schedule-row" data-hall="1" data-days="weekend">
                     <td class="px-3">
-                      <img src="images/i.webp" alt="The Odyssey" class="rounded-2 object-fit-cover shadow-sm" style="width: 55px; height: 75px;">
+                      <img decoding="async" src="images/placeholder.svg" data-src="images/i.webp" alt="The Odyssey" class="lazy-image rounded-2 object-fit-cover shadow-sm" style="width: 55px; height: 75px;">
                     </td>
                     <td>
                       <div class="fw-bold text-light">The Odyssey</div>
                       <div class="small text-secondary">Epic / Fantasy &bull; 155 min</div>
                     </td>
                     <td><span class="badge bg-secondary">Hall 1 (IMAX)</span></td>
-                    <td class="fw-bold text-warning fs-5">18:00</td>
+                    <td><div class="fw-bold text-warning fs-5">18:00</div><div class="small text-secondary">Sat-Sun</div></td>
                     <td><span class="badge bg-warning text-white">4K IMAX Laser</span></td>
                     <td class="fw-semibold">3,500 ₸</td>
                     <td class="px-3 text-end">
@@ -227,17 +215,16 @@
                     </td>
                   </tr>
 
-                  <!-- Row 5 -->
-                  <tr>
+                  <tr class="schedule-row" data-hall="3" data-days="weekdays">
                     <td class="px-3">
-                      <img src="images/spider.jpg" alt="Spider-Man" class="rounded-2 object-fit-cover shadow-sm" style="width: 55px; height: 75px;">
+                      <img decoding="async" src="images/placeholder.svg" data-src="images/spider.jpg" alt="Spider-Man" class="lazy-image rounded-2 object-fit-cover shadow-sm" style="width: 55px; height: 75px;">
                     </td>
                     <td>
                       <div class="fw-bold text-light">Spider-Man: Brand New Day</div>
                       <div class="small text-secondary">Action / Adventure &bull; 140 min</div>
                     </td>
                     <td><span class="badge bg-secondary">Hall 3 (Dolby)</span></td>
-                    <td class="fw-bold text-warning fs-5">12:15</td>
+                    <td><div class="fw-bold text-warning fs-5">12:15</div><div class="small text-secondary">Mon-Fri</div></td>
                     <td><span class="badge bg-info text-dark">Dolby 2D</span></td>
                     <td class="fw-semibold">1,800 ₸</td>
                     <td class="px-3 text-end">
@@ -245,17 +232,16 @@
                     </td>
                   </tr>
 
-                  <!-- Row 6 -->
-                  <tr>
+                  <tr class="schedule-row" data-hall="2" data-days="weekdays">
                     <td class="px-3">
-                      <img src="images/inception11.jpg" alt="Inception" class="rounded-2 object-fit-cover shadow-sm" style="width: 55px; height: 75px;">
+                      <img decoding="async" src="images/placeholder.svg" data-src="images/inception11.jpg" alt="Inception" class="lazy-image rounded-2 object-fit-cover shadow-sm" style="width: 55px; height: 75px;">
                     </td>
                     <td>
                       <div class="fw-bold text-light">Inception (Anniversary Screening)</div>
                       <div class="small text-secondary">Sci-Fi / Mind-Bender &bull; 148 min</div>
                     </td>
                     <td><span class="badge bg-secondary">Hall 2 (VIP)</span></td>
-                    <td class="fw-bold text-warning fs-5">23:00</td>
+                    <td><div class="fw-bold text-warning fs-5">23:00</div><div class="small text-secondary">Mon-Fri</div></td>
                     <td><span class="badge bg-success text-white">2D ATMOS VIP</span></td>
                     <td class="fw-semibold">2,500 ₸</td>
                     <td class="px-3 text-end">
@@ -265,6 +251,7 @@
                 </tbody>
               </table>
             </div>
+            <p id="scheduleEmpty" class="text-secondary text-center p-4 mb-0" role="status" hidden>No sample sessions match these filters.</p>
           </div>
         </div>
 
@@ -272,7 +259,6 @@
     </div>
   </main>
 
-  <!-- Footer -->
   <footer class="bg-black text-light py-4 border-top border-secondary mt-auto" aria-label="Site Footer">
     <div class="container text-center">
       <div class="row gy-3 align-items-center">
@@ -295,10 +281,7 @@
     </div>
   </footer>
 
-  <!-- Bootstrap 5 Bundle JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="js/vendor/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-  <!-- Custom Scripts -->
-  <script src="js/main.js"></script>
-</body>
+  </body>
 </html>

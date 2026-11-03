@@ -1,38 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 <head>
-  <!-- 
-    Authors: Umarov Diyar, Anuar Muratbay, Aibek Mukhat
-    Group: SE-2507
-  -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Halls &amp; Tech - 404 Cinema</title>
 
-  <!-- Bootstrap connection-->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="css/vendor/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-  <!-- Custom CSS -->
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/jquery.css">
+  <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+  <script src="js/jquery-fallback.js"></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/script.js" defer></script>
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg">
 </head>
 <body class="bg-dark text-light d-flex flex-column min-vh-100">
+  <div id="scrollProgress" role="progressbar" aria-label="Page scroll progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+  <div id="siteToast" role="status" aria-live="polite"></div>
 
-  <!-- Main Navigation Bar & Header Utility -->
   <header class="sticky-top shadow">
-    <!-- Utility Bar: Live Clock & Theme Switcher -->
     <div class="bg-black border-bottom border-secondary border-opacity-25 py-1 px-3 small text-secondary">
       <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
-        <!-- Live Clock -->
         <div class="d-flex align-items-center gap-2" id="liveClock">
           <span class="clock-pulse-dot" title="Live Clock Active"></span>
           <span class="text-secondary small">Astana Time:</span>
           <span id="clockText" class="fw-semibold text-warning small">Loading time...</span>
         </div>
 
-        <!-- Theme Switcher -->
         <div class="d-flex align-items-center gap-2 ms-auto">
-          <button id="themeToggleBtn" type="button" class="btn btn-sm btn-outline-secondary text-light py-0 px-2" title="Click to switch background theme">
-             <span class="d-none d-sm-inline">Theme:</span> <span id="themeNameLabel" class="text-warning fw-bold">Obsidian Dark</span>
+          <button id="themeToggleBtn" type="button" class="btn btn-sm btn-outline-secondary text-light py-0 px-2" title="Switch between day and night">
+             <span class="d-none d-sm-inline">Theme:</span> <span id="themeNameLabel" class="text-warning fw-bold">Night</span>
           </button>
         </div>
       </div>
@@ -86,7 +84,6 @@
   <main class="flex-grow-1 py-4 py-lg-5">
     <div class="container">
 
-      <!-- Header Section -->
       <div class="text-center mb-5">
         <span class="badge bg-warning text-white text-uppercase px-3 py-2 fw-bold mb-2">Acoustic &amp; Visual Engineering</span>
         <h1 class="display-5 fw-bold text-light mb-2">Our Auditoriums &amp; Technology</h1>
@@ -95,11 +92,10 @@
         </p>
       </div>
 
-      <!-- Hall 1 -->
       <section class="card bg-secondary bg-opacity-10 border-secondary border-opacity-75 p-4 rounded-4 shadow-sm mb-4">
         <div class="row align-items-center g-4">
           <div class="col-12 col-lg-6">
-            <img src="images/hall1.jpeg" class="img-fluid rounded-3 shadow border border-secondary" alt="Hall 1: IMAX Laser Auditorium">
+            <img decoding="async" src="images/placeholder.svg" data-src="images/hall1.jpeg" class="lazy-image img-fluid rounded-3 shadow border border-secondary" alt="Hall 1: IMAX Laser Auditorium">
           </div>
           <div class="col-12 col-lg-6">
             <span class="badge bg-warning text-white mb-2 fw-bold">Hall 01 &bull; Flagship</span>
@@ -124,11 +120,10 @@
         </div>
       </section>
 
-      <!-- Hall 2 -->
       <section class="card bg-secondary bg-opacity-10 border-secondary border-opacity-75 p-4 rounded-4 shadow-sm mb-4">
         <div class="row align-items-center g-4 flex-lg-row-reverse">
           <div class="col-12 col-lg-6">
-            <img src="images/hall2.jpeg" class="img-fluid rounded-3 shadow border border-secondary" alt="Hall 2: VIP Premium Lounge">
+            <img decoding="async" src="images/placeholder.svg" data-src="images/hall2.jpeg" class="lazy-image img-fluid rounded-3 shadow border border-secondary" alt="Hall 2: VIP Premium Lounge">
           </div>
           <div class="col-12 col-lg-6">
             <span class="badge bg-info text-dark mb-2 fw-bold">Hall 02 &bull; Luxury Tier</span>
@@ -153,11 +148,10 @@
         </div>
       </section>
 
-      <!-- Hall 3 -->
       <section class="card bg-secondary bg-opacity-10 border-secondary border-opacity-75 p-4 rounded-4 shadow-sm mb-5">
         <div class="row align-items-center g-4">
           <div class="col-12 col-lg-6">
-            <img src="images/hall3.jpeg" class="img-fluid rounded-3 shadow border border-secondary" alt="Hall 3: Dolby Atmos Soundstage">
+            <img decoding="async" src="images/placeholder.svg" data-src="images/hall3.jpeg" class="lazy-image img-fluid rounded-3 shadow border border-secondary" alt="Hall 3: Dolby Atmos Soundstage">
           </div>
           <div class="col-12 col-lg-6">
             <span class="badge bg-success text-white mb-2 fw-bold">Hall 03 &bull; Spatial Audio</span>
@@ -182,7 +176,6 @@
         </div>
       </section>
 
-      <!-- Cinema Atmosphere Gallery (3 Columns col-lg-4) -->
       <section class="mb-5">
         <div class="text-center mb-4">
           <span class="badge bg-warning text-white px-3 py-1 mb-2">Photo Gallery</span>
@@ -193,7 +186,7 @@
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
           <div class="col">
             <div class="card h-100 bg-secondary bg-opacity-10 border-secondary border-opacity-75 overflow-hidden shadow-sm">
-              <img src="images/imax1.jpeg" class="card-img-top object-fit-cover" style="height: 220px;" alt="IMAX Curved Screen">
+              <img decoding="async" src="images/placeholder.svg" data-src="images/imax1.jpeg" class="lazy-image card-img-top object-fit-cover" style="height: 220px;" alt="IMAX Curved Screen">
               <div class="card-body">
                 <h5 class="card-title text-warning fw-bold mb-1">IMAX Curved Screen</h5>
                 <p class="card-text text-secondary small">22m floor-to-ceiling visual immersion screen.</p>
@@ -202,7 +195,7 @@
           </div>
           <div class="col">
             <div class="card h-100 bg-secondary bg-opacity-10 border-secondary border-opacity-75 overflow-hidden shadow-sm">
-              <img src="images/reclainer1.jpeg" class="card-img-top object-fit-cover" style="height: 220px;" alt="VIP Recliners">
+              <img decoding="async" src="images/placeholder.svg" data-src="images/reclainer1.jpeg" class="lazy-image card-img-top object-fit-cover" style="height: 220px;" alt="VIP Recliners">
               <div class="card-body">
                 <h5 class="card-title text-warning fw-bold mb-1">VIP Recliners</h5>
                 <p class="card-text text-secondary small">Motorized Italian leather luxury seating.</p>
@@ -211,7 +204,7 @@
           </div>
           <div class="col">
             <div class="card h-100 bg-secondary bg-opacity-10 border-secondary border-opacity-75 overflow-hidden shadow-sm">
-              <img src="images/dolby1.jpeg" class="card-img-top object-fit-cover" style="height: 220px;" alt="Dolby Soundstage">
+              <img decoding="async" src="images/placeholder.svg" data-src="images/dolby1.jpeg" class="lazy-image card-img-top object-fit-cover" style="height: 220px;" alt="Dolby Soundstage">
               <div class="card-body">
                 <h5 class="card-title text-warning fw-bold mb-1">Dolby Atmos Hall</h5>
                 <p class="card-text text-secondary small">64 independent surround sound channels.</p>
@@ -220,7 +213,7 @@
           </div>
           <div class="col">
             <div class="card h-100 bg-secondary bg-opacity-10 border-secondary border-opacity-75 overflow-hidden shadow-sm">
-              <img src="images/laser1.jpeg" class="card-img-top object-fit-cover" style="height: 220px;" alt="Laser Projector">
+              <img decoding="async" src="images/placeholder.svg" data-src="images/laser1.jpeg" class="lazy-image card-img-top object-fit-cover" style="height: 220px;" alt="Laser Projector">
               <div class="card-body">
                 <h5 class="card-title text-warning fw-bold mb-1">4K Dual Laser</h5>
                 <p class="card-text text-secondary small">Ultra-bright HDR commercial projection optics.</p>
@@ -229,7 +222,7 @@
           </div>
           <div class="col">
             <div class="card h-100 bg-secondary bg-opacity-10 border-secondary border-opacity-75 overflow-hidden shadow-sm">
-              <img src="images/bar1.jpeg" class="card-img-top object-fit-cover" style="height: 220px;" alt="Lobby Bar">
+              <img decoding="async" src="images/placeholder.svg" data-src="images/bar1.jpeg" class="lazy-image card-img-top object-fit-cover" style="height: 220px;" alt="Lobby Bar">
               <div class="card-body">
                 <h5 class="card-title text-warning fw-bold mb-1">Cinema Bar &amp; Concessions</h5>
                 <p class="card-text text-secondary small">Fresh gourmet popcorn and cold refreshments.</p>
@@ -238,7 +231,7 @@
           </div>
           <div class="col">
             <div class="card h-100 bg-secondary bg-opacity-10 border-secondary border-opacity-75 overflow-hidden shadow-sm">
-              <img src="images/walls.jpeg" class="card-img-top object-fit-cover" style="height: 220px;" alt="Acoustic Panels">
+              <img decoding="async" src="images/placeholder.svg" data-src="images/walls.jpeg" class="lazy-image card-img-top object-fit-cover" style="height: 220px;" alt="Acoustic Panels">
               <div class="card-body">
                 <h5 class="card-title text-warning fw-bold mb-1">Acoustic Wall Architecture</h5>
                 <p class="card-text text-secondary small">Zero-reflection high density acoustic materials.</p>
@@ -248,10 +241,9 @@
         </div>
       </section>
 
-      <!-- Developer Info -->
       <section class="card bg-secondary bg-opacity-10 border-secondary border-opacity-50 p-4 rounded-4 shadow-sm">
         <div class="d-flex align-items-center gap-3">
-          <img src="images/orig.webp" alt="Diyar Umarov" class="rounded-circle border border-warning border-2 object-fit-cover" style="width: 70px; height: 70px;">
+          <img decoding="async" src="images/placeholder.svg" data-src="images/orig.webp" alt="Diyar Umarov" class="lazy-image rounded-circle border border-warning border-2 object-fit-cover" style="width: 70px; height: 70px;">
           <div>
             <h4 class="h5 fw-bold text-warning mb-1">Diyar Umarov</h4>
             <span class="badge bg-secondary mb-1">Page Architect</span>
@@ -263,7 +255,6 @@
     </div>
   </main>
 
-  <!-- Footer  -->
   <footer class="bg-black text-light py-4 border-top border-secondary mt-auto" aria-label="Site Footer">
     <div class="container text-center">
       <div class="row gy-3 align-items-center">
@@ -286,10 +277,7 @@
     </div>
   </footer>
 
-  <!-- Bootstrap 5 Bundle JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="js/vendor/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-  <!-- Custom Scripts -->
-  <script src="js/main.js"></script>
-</body>
+  </body>
 </html>
