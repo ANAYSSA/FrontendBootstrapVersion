@@ -1,38 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 <head>
-  <!-- 
-    Authors: Umarov Diyar, Anuar Muratbay, Aibek Mukhat
-    Group: SE-2507
-  -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Online Ticket Booking - 404 Cinema</title>
 
-  <!-- Bootstrap connection -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="css/vendor/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-  <!-- Custom CSS -->
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/jquery.css">
+  <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+  <script src="js/jquery-fallback.js"></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/script.js" defer></script>
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg">
 </head>
 <body class="bg-dark text-light d-flex flex-column min-vh-100">
+  <div id="scrollProgress" role="progressbar" aria-label="Page scroll progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+  <div id="siteToast" role="status" aria-live="polite"></div>
 
-  <!-- Main Navigation Bar & Header Utility -->
   <header class="sticky-top shadow">
-    <!-- Utility Bar: Live Clock & Theme Switcher -->
     <div class="bg-black border-bottom border-secondary border-opacity-25 py-1 px-3 small text-secondary">
       <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
-        <!-- Live Clock -->
         <div class="d-flex align-items-center gap-2" id="liveClock">
           <span class="clock-pulse-dot" title="Live Clock Active"></span>
           <span class="text-secondary small">Astana Time:</span>
           <span id="clockText" class="fw-semibold text-warning small">Loading time...</span>
         </div>
 
-        <!-- Theme Switcher -->
         <div class="d-flex align-items-center gap-2 ms-auto">
-          <button id="themeToggleBtn" type="button" class="btn btn-sm btn-outline-secondary text-light py-0 px-2" title="Click to switch background theme">
-             <span class="d-none d-sm-inline">Theme:</span> <span id="themeNameLabel" class="text-warning fw-bold">Obsidian Dark</span>
+          <button id="themeToggleBtn" type="button" class="btn btn-sm btn-outline-secondary text-light py-0 px-2" title="Switch between day and night">
+             <span class="d-none d-sm-inline">Theme:</span> <span id="themeNameLabel" class="text-warning fw-bold">Night</span>
           </button>
         </div>
       </div>
@@ -86,7 +84,6 @@
   <main class="flex-grow-1 py-4 py-lg-5">
     <div class="container">
 
-      <!-- Hero Header -->
       <div class="text-center mb-5">
         <span class="badge bg-warning text-white text-uppercase px-3 py-2 fw-bold mb-2">Fast &amp; Convenient</span>
         <h1 class="display-5 fw-bold text-light mb-2">Reserve Your Cinema Seats</h1>
@@ -95,14 +92,11 @@
         </p>
       </div>
 
-      <!-- 2-Column Grid Layout (col-lg-5 and col-lg-7) -->
       <div class="row g-4 g-lg-5 align-items-start">
 
-        <!-- Column 1: Information, Hall Preview & Steps -->
         <div class="col-12 col-lg-5">
-          <!-- Hall Preview Card -->
           <div class="card bg-secondary bg-opacity-10 border-secondary border-opacity-75 shadow-sm mb-4 overflow-hidden rounded-4">
-            <img src="images/hall2.jpeg" class="card-img-top object-fit-cover" style="height: 240px;" alt="VIP Hall recliners">
+            <img decoding="async" src="images/placeholder.svg" data-src="images/hall2.jpeg" class="lazy-image card-img-top object-fit-cover" style="height: 240px;" alt="VIP Hall recliners">
             <div class="card-body">
               <h5 class="card-title text-warning fw-bold mb-2">VIP Recliner Auditoriums</h5>
               <p class="card-text text-secondary small">
@@ -116,7 +110,6 @@
             </div>
           </div>
 
-          <!-- Step-by-step instructions -->
           <div class="card bg-secondary bg-opacity-10 border-secondary border-opacity-75 shadow-sm p-4 rounded-4">
             <h4 class="h5 text-warning fw-bold mb-3">Simple Booking Steps:</h4>
             <ol class="list-group list-group-numbered list-group-flush bg-transparent text-secondary mb-0">
@@ -136,7 +129,6 @@
           </div>
         </div>
 
-        <!-- Column 2: Responsive Form Design -->
         <div class="col-12 col-lg-7">
           <div class="card shadow-lg p-4 p-md-5 rounded-4">
             <div class="d-flex justify-content-between align-items-center mb-4">
@@ -147,9 +139,9 @@
               <span class="text-secondary small">All fields marked * are required</span>
             </div>
 
-            <form id="booking-form">
+            <p class="small text-secondary">Demo reservation: no payment is taken and no email is sent.</p>
+            <form id="booking-form" novalidate>
 
-              <!-- Full Name -->
               <div class="mb-3">
                 <label for="fullname" class="form-label fw-semibold text-light">Full Name *</label>
                 <div class="input-group has-validation">
@@ -159,7 +151,6 @@
                 </div>
               </div>
 
-              <!-- Email -->
               <div class="mb-3">
                 <label for="email" class="form-label fw-semibold text-light">Email Address *</label>
                 <div class="input-group has-validation">
@@ -167,11 +158,10 @@
                   <input type="email" class="form-control bg-dark border-secondary text-light" id="email" name="email" placeholder="you@example.com" aria-describedby="email-addon" required>
                   <div class="invalid-feedback">Please enter a valid email (e.g. name@domain.com).</div>
                 </div>
-                <div class="form-text text-secondary">Your booking voucher and barcode will be sent here.</div>
+                <div class="form-text text-secondary">Enter your email for the demo reservation.</div>
               </div>
 
               <div class="row g-3 mb-3">
-                <!-- Movie Selection -->
                 <div class="col-12 col-md-7">
                   <label for="movie" class="form-label fw-semibold text-light">Select Movie *</label>
                   <select class="form-select bg-dark border-secondary text-light" id="movie" name="movie" required>
@@ -186,9 +176,9 @@
                     <option value="avatar">Avatar: Fire and Ash (3D HFR) - 3,000 ₸</option>
                     <option value="batman">The Batman: Part II (Dolby Atmos) - 2,800 ₸</option>
                   </select>
+                  <div class="invalid-feedback">Please choose a movie and showtime.</div>
                 </div>
 
-                <!-- Session Time -->
                 <div class="col-12 col-md-5">
                   <label for="sessionTime" class="form-label fw-semibold text-light">Showtime *</label>
                   <select class="form-select bg-dark border-secondary text-light" id="sessionTime" name="sessionTime" required>
@@ -198,10 +188,10 @@
                     <option value="21:30">21:30 (Late Night)</option>
                     <option value="23:55">23:55 (Midnight)</option>
                   </select>
+                  <div class="invalid-feedback">Please choose a movie and showtime.</div>
                 </div>
               </div>
 
-              <!-- Seat Row (Radio Buttons) -->
               <div class="mb-4 p-3 rounded-3 bg-dark border border-secondary border-opacity-50">
                 <label class="form-label fw-bold text-warning mb-2 d-block">Choose Seating Tier *</label>
 
@@ -227,7 +217,6 @@
                 </div>
               </div>
 
-              <!-- Add-on Extras -->
               <div class="mb-4">
                 <label class="form-label fw-semibold text-light mb-2">Optional Concession Combos</label>
 
@@ -246,21 +235,18 @@
                 </div>
               </div>
 
-              <!-- Comment / Special Needs -->
               <div class="mb-4">
                 <label for="comment" class="form-label fw-semibold text-light">Special Requests / Accessibility Notes</label>
                 <textarea class="form-control bg-dark border-secondary text-light" id="comment" name="comment" rows="3" placeholder="Wheelchair access, aisle seat preference, or special anniversary notes..."></textarea>
               </div>
 
-              <!-- Agreement Checkbox -->
               <div class="form-check mb-4">
-                <input class="form-check-input" type="checkbox" id="termsCheck" required checked>
+                <input class="form-check-input" type="checkbox" id="termsCheck" required>
                 <label class="form-check-label small text-secondary" for="termsCheck">
                   I agree to the 404 Cinema booking terms and understand that tickets can be refunded up to 2 hours before showtime.
                 </label>
               </div>
 
-              <!-- Action Buttons (Submit & Reset) -->
               <div class="d-flex flex-column flex-sm-row gap-2">
                 <button type="submit" class="btn btn-warning btn-lg flex-grow-1 fw-bold text-white py-3 shadow-sm">
                   Confirm Reservation &rarr;
@@ -278,7 +264,6 @@
     </div>
   </main>
 
-  <!-- Footer -->
   <footer class="bg-black text-light py-4 border-top border-secondary mt-auto" aria-label="Site Footer">
     <div class="container text-center">
       <div class="row gy-3 align-items-center">
@@ -301,10 +286,7 @@
     </div>
   </footer>
 
-  <!-- Bootstrap 5 Bundle JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="js/vendor/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-  <!-- Custom Scripts -->
-  <script src="js/main.js"></script>
-</body>
+  </body>
 </html>

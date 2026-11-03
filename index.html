@@ -1,39 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 <head>
-  <!-- 
-    Authors: Umarov Diyar, Anuar Muratbay, Aibek Mukhat
-    Group: SE-2507
-  -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>404 Cinema - Ultimate Movie Experience</title>
 
-  <!-- Bootstrap connection -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="css/vendor/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-  <!-- Custom CSS -->
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/jquery.css">
+  <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+  <script src="js/jquery-fallback.js"></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/script.js" defer></script>
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg">
 </head>
 <body class="bg-dark text-light d-flex flex-column min-vh-100">
+  <div id="scrollProgress" role="progressbar" aria-label="Page scroll progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+  <div id="siteToast" role="status" aria-live="polite"></div>
 
-  <!-- Main Navigation Bar & Header Utility -->
   <header class="sticky-top shadow">
-    <!-- Utility Bar: Live Clock & Theme Switcher -->
     <div class="bg-black border-bottom border-secondary border-opacity-25 py-1 px-3 small text-secondary">
       <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
-        <!-- Live Clock -->
         <div class="d-flex align-items-center gap-2" id="liveClock">
           <span class="clock-pulse-dot" title="Live Clock Active"></span>
           <span class="text-secondary small">Astana Time:</span>
           <span id="clockText" class="fw-semibold text-warning small">Loading time...</span>
         </div>
 
-        <!-- Theme Switcher, Sound & VIP Club Modal Trigger -->
         <div class="d-flex align-items-center gap-2 ms-auto">
           <button id="soundBtn" type="button" class="btn btn-sm btn-outline-secondary text-light py-0 px-2" title="Play notification sound">🔔 Sound</button>
-          <button id="themeToggleBtn" type="button" class="btn btn-sm btn-outline-secondary text-light py-0 px-2" title="Click to switch background theme">
-            <span class="d-none d-sm-inline">Theme:</span> <span id="themeNameLabel" class="text-warning fw-bold">Obsidian Dark</span>
+          <button id="themeToggleBtn" type="button" class="btn btn-sm btn-outline-secondary text-light py-0 px-2" title="Switch between day and night">
+            <span class="d-none d-sm-inline">Theme:</span> <span id="themeNameLabel" class="text-warning fw-bold">Night</span>
           </button>
           <button type="button" class="btn btn-sm btn-warning text-white fw-bold py-0 px-2 js-open-modal" title="Open VIP Club Registration Form">
             VIP Club
@@ -89,10 +87,8 @@
 
   <main class="flex-grow-1">
 
-    <!-- Carousel-->
     <section class="container my-4 my-lg-5" aria-label="Featured Movie Premieres">
       <div id="cinemaHeroCarousel" class="carousel slide carousel-fade shadow-lg rounded-4 overflow-hidden border border-secondary" data-bs-ride="carousel" data-bs-interval="4500">
-        <!-- 9 Indicators -->
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#cinemaHeroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1: The Odyssey"></button>
           <button type="button" data-bs-target="#cinemaHeroCarousel" data-bs-slide-to="1" aria-label="Slide 2: Dune 3"></button>
@@ -105,7 +101,6 @@
           <button type="button" data-bs-target="#cinemaHeroCarousel" data-bs-slide-to="8" aria-label="Slide 9: The Batman"></button>
         </div>
 
-        <!-- 9 Movie Slides -->
         <div class="carousel-inner">
           <div class="carousel-item active">
             <img src="images/the-odyssey-blu-ray-streaming-date.avif" class="d-block w-100 carousel-hero-img" alt="The Odyssey">
@@ -136,7 +131,6 @@
           </div>
         </div>
 
-        <!-- Controls -->
         <button class="carousel-control-prev" type="button" data-bs-target="#cinemaHeroCarousel" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
@@ -148,10 +142,8 @@
       </div>
     </section>
 
-    <!-- Cinema Experience Intro (2-Column Grid col-lg-6) -->
     <section class="container py-4 py-lg-5" aria-labelledby="experience-heading">
       <div class="row align-items-center g-4 g-lg-5">
-        <!-- Column 1 -->
         <div class="col-12 col-lg-6">
           <span class="badge bg-warning text-white mb-2 px-3 py-1">Next-Generation Cinema</span>
           <h1 id="experience-heading" class="display-5 fw-bold text-light mb-3">
@@ -179,7 +171,6 @@
             </ul>
           </div>
 
-          <!-- Action Buttons -->
           <div class="d-flex flex-wrap gap-2 mt-lg-4 px-sm-2">
             <a href="schedule.html" class="btn btn-warning btn-lg fw-bold text-white shadow-sm">
               View Schedule
@@ -190,24 +181,28 @@
           </div>
         </div>
 
-        <!-- Column 2 -->
         <div class="col-12 col-lg-6">
           <div class="card border-0 bg-transparent shadow">
-            <img src="images/imax1.jpeg" class="img-fluid rounded-4 shadow border border-secondary" alt="404 Cinema Auditorium">
+            <img decoding="async" src="images/placeholder.svg" data-src="images/imax1.jpeg" class="lazy-image img-fluid rounded-4 shadow border border-secondary" alt="404 Cinema Auditorium">
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Filter Controls Bar -->
-    <section class="container pt-3 pb-2" aria-label="Format Filter Controls">
+    <section class="container pb-4" aria-label="Cinema in numbers">
+      <div class="row g-3 text-center">
+        <div class="col-4"><div class="card p-3"><strong class="counter fs-2 text-warning" data-count="3">0</strong><span class="small">Premium halls</span></div></div>
+        <div class="col-4"><div class="card p-3"><strong class="counter fs-2 text-warning" data-count="64">0</strong><span class="small">Audio channels</span></div></div>
+        <div class="col-4"><div class="card p-3"><strong class="counter fs-2 text-warning" data-count="4">0</strong><span class="small">K laser projection</span></div></div>
+      </div>
+    </section>
+    <section id="movies" class="container pt-3 pb-2" aria-label="Format Filter Controls">
       <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 border-bottom border-secondary pb-3">
         <div>
           <h2 class="h3 fw-bold text-light mb-1">Now Showing</h2>
           <p class="text-secondary mb-0">Browse current theatrical releases and select your preferred viewing format.</p>
         </div>
 
-        <!-- Button Group for Format Filter (Controlled via JS Switch Statement) -->
         <div class="btn-group shadow-sm" role="group" aria-label="Movie Format Filter" id="movieFormatFilterGroup">
           <button type="button" class="btn btn-warning active fw-semibold text-white format-filter-btn" data-filter="all">All Formats</button>
           <button type="button" class="btn btn-outline-secondary text-light format-filter-btn" data-filter="imax">IMAX 3D</button>
@@ -215,16 +210,22 @@
           <button type="button" class="btn btn-outline-secondary text-light format-filter-btn" data-filter="standard">Standard 2D</button>
         </div>
       </div>
-    </section>
 
-    <!-- Now Showing: 6 Movies in 3-Column Grid (col-lg-4) -->
+      <div class="movie-search mt-4">
+        <label for="movieSearch" class="form-label fw-semibold">Find a movie</label>
+        <input id="movieSearch" type="search" class="form-control" placeholder="Search titles or descriptions..." autocomplete="off" role="combobox" aria-autocomplete="list" aria-controls="movieSuggestions" aria-expanded="false">
+        <ul id="movieSuggestions" class="search-suggestions" role="listbox" aria-label="Movie suggestions" hidden></ul>
+        <p id="searchCount" class="small mt-2 mb-0" role="status">6 movies found</p>
+      </div>
+</section>
+
     <section class="container py-4 py-lg-5" aria-label="Now Showing Movie Cards">
+      <p id="noMovies" class="alert alert-secondary" hidden>No movies match. Try another title or format.</p>
       <div class="row g-4" id="movieCardsGrid">
 
-        <!-- Movie 1 -->
         <div class="col-12 col-md-6 col-lg-4 movie-card-item" data-category="imax">
           <div class="card h-100 bg-secondary bg-opacity-10 border-secondary border-opacity-75 shadow-sm hover-card">
-            <img src="images/i.webp" class="card-img-top object-fit-cover" style="height: 320px;" alt="The Odyssey">
+            <img decoding="async" src="images/placeholder.svg" data-src="images/i.webp" class="lazy-image card-img-top object-fit-cover" style="height: 320px;" alt="The Odyssey">
             <div class="card-body d-flex flex-column">
               <div class="d-flex justify-content-between align-items-start mb-2">
                 <h5 class="card-title text-warning fw-bold mb-0">The Odyssey</h5>
@@ -235,16 +236,15 @@
               </p>
               <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top border-secondary border-opacity-50">
                 <span class="fw-bold text-light">From 2,800 ₸</span>
-                <a href="booking.html" class="btn btn-warning btn-sm fw-semibold text-white">Book Tickets</a>
+                <a href="booking.html?movie=odyssey" class="btn btn-warning btn-sm fw-semibold text-white">Book Tickets</a>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Movie 2 -->
         <div class="col-12 col-md-6 col-lg-4 movie-card-item" data-category="dolby">
           <div class="card h-100 bg-secondary bg-opacity-10 border-secondary border-opacity-75 shadow-sm hover-card">
-            <img src="images/dune.webp" class="card-img-top object-fit-cover" style="height: 320px;" alt="Dune 3">
+            <img decoding="async" src="images/placeholder.svg" data-src="images/dune.webp" class="lazy-image card-img-top object-fit-cover" style="height: 320px;" alt="Dune 3">
             <div class="card-body d-flex flex-column">
               <div class="d-flex justify-content-between align-items-start mb-2">
                 <h5 class="card-title text-warning fw-bold mb-0">Dune 3</h5>
@@ -255,16 +255,15 @@
               </p>
               <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top border-secondary border-opacity-50">
                 <span class="fw-bold text-light">From 2,600 ₸</span>
-                <a href="booking.html" class="btn btn-warning btn-sm fw-semibold text-white">Book Tickets</a>
+                <a href="booking.html?movie=dune3" class="btn btn-warning btn-sm fw-semibold text-white">Book Tickets</a>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Movie 3 -->
         <div class="col-12 col-md-6 col-lg-4 movie-card-item" data-category="standard">
           <div class="card h-100 bg-secondary bg-opacity-10 border-secondary border-opacity-75 shadow-sm hover-card">
-            <img src="images/backrooms.jpg" class="card-img-top object-fit-cover" style="height: 320px;" alt="Backrooms">
+            <img decoding="async" src="images/placeholder.svg" data-src="images/backrooms.jpg" class="lazy-image card-img-top object-fit-cover" style="height: 320px;" alt="Backrooms">
             <div class="card-body d-flex flex-column">
               <div class="d-flex justify-content-between align-items-start mb-2">
                 <h5 class="card-title text-warning fw-bold mb-0">Backrooms</h5>
@@ -275,16 +274,15 @@
               </p>
               <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top border-secondary border-opacity-50">
                 <span class="fw-bold text-light">From 2,200 ₸</span>
-                <a href="booking.html" class="btn btn-warning btn-sm fw-semibold text-white">Book Tickets</a>
+                <a href="booking.html?movie=backrooms" class="btn btn-warning btn-sm fw-semibold text-white">Book Tickets</a>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Movie 4 -->
         <div class="col-12 col-md-6 col-lg-4 movie-card-item" data-category="imax">
           <div class="card h-100 bg-secondary bg-opacity-10 border-secondary border-opacity-75 shadow-sm hover-card">
-            <img src="images/spider.jpg" class="card-img-top object-fit-cover" style="height: 320px;" alt="Spider-Man: Brand New Day">
+            <img decoding="async" src="images/placeholder.svg" data-src="images/spider.jpg" class="lazy-image card-img-top object-fit-cover" style="height: 320px;" alt="Spider-Man: Brand New Day">
             <div class="card-body d-flex flex-column">
               <div class="d-flex justify-content-between align-items-start mb-2">
                 <h5 class="card-title text-warning fw-bold mb-0">Spider-Man: Brand New Day</h5>
@@ -295,16 +293,15 @@
               </p>
               <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top border-secondary border-opacity-50">
                 <span class="fw-bold text-light">From 2,800 ₸</span>
-                <a href="booking.html" class="btn btn-warning btn-sm fw-semibold text-white">Book Tickets</a>
+                <a href="booking.html?movie=spiderman" class="btn btn-warning btn-sm fw-semibold text-white">Book Tickets</a>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Movie 5 -->
         <div class="col-12 col-md-6 col-lg-4 movie-card-item" data-category="dolby">
           <div class="card h-100 bg-secondary bg-opacity-10 border-secondary border-opacity-75 shadow-sm hover-card">
-            <img src="images/fall.jpg" class="card-img-top object-fit-cover" style="height: 320px;" alt="Fall 2: Deadpoint">
+            <img decoding="async" src="images/placeholder.svg" data-src="images/fall.jpg" class="lazy-image card-img-top object-fit-cover" style="height: 320px;" alt="Fall 2: Deadpoint">
             <div class="card-body d-flex flex-column">
               <div class="d-flex justify-content-between align-items-start mb-2">
                 <h5 class="card-title text-warning fw-bold mb-0">Fall 2: Deadpoint</h5>
@@ -315,16 +312,15 @@
               </p>
               <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top border-secondary border-opacity-50">
                 <span class="fw-bold text-light">From 2,400 ₸</span>
-                <a href="booking.html" class="btn btn-warning btn-sm fw-semibold text-white">Book Tickets</a>
+                <a href="booking.html?movie=fall2" class="btn btn-warning btn-sm fw-semibold text-white">Book Tickets</a>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Movie 6 -->
         <div class="col-12 col-md-6 col-lg-4 movie-card-item" data-category="dolby">
           <div class="card h-100 bg-secondary bg-opacity-10 border-secondary border-opacity-75 shadow-sm hover-card">
-            <img src="images/inception11.jpg" class="card-img-top object-fit-cover" style="height: 320px;" alt="Inception Anniversary Screening">
+            <img decoding="async" src="images/placeholder.svg" data-src="images/inception11.jpg" class="lazy-image card-img-top object-fit-cover" style="height: 320px;" alt="Inception Anniversary Screening">
             <div class="card-body d-flex flex-column">
               <div class="d-flex justify-content-between align-items-start mb-2">
                 <h5 class="card-title text-warning fw-bold mb-0">Inception (Re-Release)</h5>
@@ -335,7 +331,7 @@
               </p>
               <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top border-secondary border-opacity-50">
                 <span class="fw-bold text-light">From 2,500 ₸</span>
-                <a href="booking.html" class="btn btn-warning btn-sm fw-semibold text-white">Book Tickets</a>
+                <a href="booking.html?movie=inception" class="btn btn-warning btn-sm fw-semibold text-white">Book Tickets</a>
               </div>
             </div>
           </div>
@@ -344,7 +340,6 @@
       </div>
     </section>
 
-    <!-- Student Discount Section -->
     <section class="container pb-5">
       <div class="card p-4 p-md-5 rounded-4 shadow-sm d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
         <div>
@@ -358,14 +353,13 @@
       </div>
     </section>
 
-    <!-- Assignment 5: Interactive Rating & Dynamic Highlights -->
     <section class="container pb-5" aria-label="Audience Experience Rating">
       <div class="card p-4 rounded-4 shadow-sm bg-secondary bg-opacity-10 border-secondary border-opacity-75">
         <div class="row align-items-center g-3">
           <div class="col-12 col-md-7">
-            <span class="badge bg-warning text-white fw-bold px-2 py-1 mb-2">Assignment 5 Interactive Features</span>
+            <span class="badge bg-warning text-white fw-bold px-2 py-1 mb-2">Audience Choice</span>
             <h3 class="h4 fw-bold text-light mb-1">Rate Your Cinema Experience</h3>
-            <p class="text-secondary small mb-2">Click stars to rate. Below are dynamic cinema highlights generated via JS Object &amp; Loop:</p>
+            <p class="text-secondary small mb-2">How was your visit? Rate your experience and explore our cinema highlights.</p>
             <div id="dynamicHighlights" class="d-flex flex-wrap gap-2 mb-2"></div>
             <div id="cinemaInfoSummary" class="text-warning small"></div>
             <div id="keyboardNavNotice" class="badge bg-warning text-white mt-2 d-none"></div>
@@ -384,7 +378,6 @@
       </div>
     </section>
 
-    <!-- Frequently Asked Questions Accordion -->
     <section class="container pb-5" aria-label="Frequently Asked Questions">
       <div class="text-center mb-4">
         <span class="badge bg-warning text-white text-uppercase px-3 py-1 fw-bold mb-2">Help Center</span>
@@ -392,8 +385,12 @@
         <p class="text-secondary">Instant answers to common questions about ticket bookings, discounts, and theater policies.</p>
       </div>
 
+      <div class="mx-auto faq-search mb-3">
+        <label for="faqSearch" class="form-label">Search answers</label>
+        <input id="faqSearch" class="form-control" type="search" placeholder="Try student, tickets or VIP...">
+        <p id="faqCount" class="small mt-2 mb-0" role="status"></p>
+      </div>
       <div class="cinema-accordion mx-auto" style="max-width: 860px;">
-        <!-- FAQ Item 1 -->
         <div class="cinema-accordion-item">
           <button class="cinema-accordion-header" type="button">
             <span>How can I refund or exchange my booked tickets?</span>
@@ -406,7 +403,6 @@
           </div>
         </div>
 
-        <!-- FAQ Item 2 -->
         <div class="cinema-accordion-item">
           <button class="cinema-accordion-header" type="button">
             <span>How does the 25% student discount work?</span>
@@ -419,7 +415,6 @@
           </div>
         </div>
 
-        <!-- FAQ Item 3 -->
         <div class="cinema-accordion-item">
           <button class="cinema-accordion-header" type="button">
             <span>What are the benefits of the 404 Cinema VIP Club?</span>
@@ -432,7 +427,6 @@
           </div>
         </div>
 
-        <!-- FAQ Item 4 -->
         <div class="cinema-accordion-item">
           <button class="cinema-accordion-header" type="button">
             <span>Can outside snacks and beverages be brought into the hall?</span>
@@ -449,7 +443,6 @@
 
   </main>
 
-  <!-- Footer -->
   <footer class="bg-black text-light py-4 border-top border-secondary mt-auto" aria-label="Site Footer">
     <div class="container text-center">
       <div class="row gy-3 align-items-center">
@@ -472,11 +465,9 @@
     </div>
   </footer>
 
-  <!-- VIP Club Registration Modal -->
   <div id="cinemaModal" class="cinema-modal-overlay" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle">
     <div class="cinema-modal-container">
-      
-      <!-- Modal Header -->
+
       <div class="cinema-modal-header">
         <div>
           <span class="badge bg-warning text-white mb-1">VIP Privilege</span>
@@ -485,47 +476,39 @@
         <button id="closeModalBtn" type="button" class="cinema-modal-close-btn" aria-label="Close popup">&times;</button>
       </div>
 
-      <!-- Modal Body -->
       <div class="cinema-modal-body">
-        <!-- Success Alert banner -->
         <div id="formSuccessAlert" class="alert alert-success d-none mb-3 py-2 px-3 small" role="alert"></div>
 
         <p class="text-secondary small mb-3">
           Sign up to receive 15% off your next ticket booking, weekly premiere invitations, and secret concessions vouchers.
         </p>
 
-        <!-- Registration Form -->
         <form id="clubRegistrationForm" novalidate>
-          
-          <!-- Full Name -->
+
           <div class="mb-3">
             <label for="regName" class="form-label small fw-semibold text-light">Full Name *</label>
             <input type="text" class="form-control bg-dark border-secondary text-light" id="regName" placeholder="e.g. Diyar Umarov" required>
             <div class="invalid-feedback small"></div>
           </div>
 
-          <!-- Email -->
           <div class="mb-3">
             <label for="regEmail" class="form-label small fw-semibold text-light">Email Address *</label>
             <input type="email" class="form-control bg-dark border-secondary text-light" id="regEmail" placeholder="name@domain.com" required>
             <div class="invalid-feedback small"></div>
           </div>
 
-          <!-- Password -->
           <div class="mb-3">
             <label for="regPassword" class="form-label small fw-semibold text-light">Password * <span class="text-secondary font-monospace">(min 8 chars)</span></label>
             <input type="password" class="form-control bg-dark border-secondary text-light" id="regPassword" placeholder="Create strong password" required>
             <div class="invalid-feedback small"></div>
           </div>
 
-          <!-- Confirm Password -->
           <div class="mb-3">
             <label for="regConfirmPassword" class="form-label small fw-semibold text-light">Confirm Password *</label>
             <input type="password" class="form-control bg-dark border-secondary text-light" id="regConfirmPassword" placeholder="Repeat your password" required>
             <div class="invalid-feedback small"></div>
           </div>
 
-          <!-- Terms Checkbox -->
           <div class="form-check mb-4">
             <input class="form-check-input" type="checkbox" id="regTerms" required>
             <label class="form-check-label text-secondary small" for="regTerms">
@@ -534,7 +517,6 @@
             <div class="invalid-feedback small"></div>
           </div>
 
-          <!-- Submit Button -->
           <button type="submit" class="btn btn-warning w-100 fw-bold text-white py-2 shadow-sm">
             Create VIP Account &rarr;
           </button>
@@ -544,10 +526,7 @@
     </div>
   </div>
 
-  <!-- Bootstrap 5 Bundle JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="js/vendor/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-  <!-- Custom Scripts -->
-  <script src="js/main.js"></script>
-</body>
+  </body>
 </html>

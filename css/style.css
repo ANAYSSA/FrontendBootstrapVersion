@@ -54,7 +54,7 @@ nav.navbar,
 
 footer,
 footer.bg-black {
-  background-color: #15171d !important;
+  background-color: var(--cinema-surface) !important;
   border-top-color: var(--cinema-border) !important;
 }
 
@@ -321,13 +321,14 @@ p, .lead, .card-text, .text-secondary {
   z-index: 9999;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition: opacity 0.3s ease, visibility 0s 0.3s;
   padding: 1rem;
 }
 
 .cinema-modal-overlay.show {
   opacity: 1;
   visibility: visible;
+  transition-delay: 0s;
 }
 
 .cinema-modal-container {
@@ -408,3 +409,76 @@ p, .lead, .card-text, .text-secondary {
 
 
 
+
+[data-bs-theme="light"] {
+  --cinema-bg: #f5f4f1;
+  --cinema-surface: #ffffff;
+  --cinema-card: #ffffff;
+  --cinema-card-inner: #f0eee9;
+  --cinema-border: #d7d9df;
+  --cinema-text-primary: #20242e;
+  --cinema-text-secondary: #526071;
+  --cinema-text-muted: #64748b;
+  --bs-body-bg: #f5f4f1;
+  --bs-body-color: #20242e;
+  --bs-secondary-color: #526071;
+  --bs-border-color: #d7d9df;
+  --bs-dark-rgb: 240, 238, 233;
+}
+
+[data-bs-theme="light"] .text-light {
+  color: var(--cinema-text-primary) !important;
+}
+
+[data-bs-theme="light"] .table-dark {
+  --bs-table-color: #20242e;
+  --bs-table-striped-color: #20242e;
+  --bs-table-hover-color: #20242e;
+  --bs-table-striped-bg: #f0eee9 !important;
+  --bs-table-hover-bg: #e7e9ed !important;
+}
+
+[data-bs-theme="light"] .btn-dark {
+  --bs-btn-bg: #f0eee9;
+  --bs-btn-color: #20242e;
+  --bs-btn-hover-bg: #e7e9ed;
+  --bs-btn-hover-color: #20242e;
+  --bs-btn-active-bg: #e7e9ed;
+  --bs-btn-active-color: #20242e;
+}
+
+[data-bs-theme="light"] .btn-outline-light {
+  --bs-btn-color: #20242e;
+  --bs-btn-border-color: #64748b;
+  --bs-btn-hover-bg: #20242e;
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-border-color: #20242e;
+}
+
+[data-bs-theme="light"] .form-control,
+[data-bs-theme="light"] .form-select,
+[data-bs-theme="light"] .input-group-text {
+  color: #20242e !important;
+  background-color: #ffffff !important;
+}
+
+[data-bs-theme="light"] .text-info {
+  color: #08728a !important;
+}
+
+[data-bs-theme="light"] .navbar-brand {
+  background-color: #1a1c23;
+  border-radius: 8px;
+  padding: 3px 6px !important;
+}
+
+body, .card, footer, .cinema-modal-container {
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

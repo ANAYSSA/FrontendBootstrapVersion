@@ -1,38 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 <head>
-  <!-- 
-    Authors: Umarov Diyar, Anuar Muratbay, Aibek Mukhat
-    Group: SE-2507
-  -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Us &amp; Team - 404 Cinema</title>
 
-  <!-- Bootstrap connection -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="css/vendor/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-  <!-- Custom CSS -->
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/jquery.css">
+  <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+  <script src="js/jquery-fallback.js"></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/script.js" defer></script>
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg">
 </head>
 <body class="bg-dark text-light d-flex flex-column min-vh-100">
+  <div id="scrollProgress" role="progressbar" aria-label="Page scroll progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+  <div id="siteToast" role="status" aria-live="polite"></div>
 
-  <!-- Main Navigation Bar & Header Utility -->
   <header class="sticky-top shadow">
-    <!-- Utility Bar: Live Clock & Theme Switcher -->
     <div class="bg-black border-bottom border-secondary border-opacity-25 py-1 px-3 small text-secondary">
       <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
-        <!-- Live Clock -->
         <div class="d-flex align-items-center gap-2" id="liveClock">
           <span class="clock-pulse-dot" title="Live Clock Active"></span>
           <span class="text-secondary small">Astana Time:</span>
           <span id="clockText" class="fw-semibold text-warning small">Loading time...</span>
         </div>
 
-        <!-- Theme Switcher -->
         <div class="d-flex align-items-center gap-2 ms-auto">
-          <button id="themeToggleBtn" type="button" class="btn btn-sm btn-outline-secondary text-light py-0 px-2" title="Click to switch background theme">
-             <span class="d-none d-sm-inline">Theme:</span> <span id="themeNameLabel" class="text-warning fw-bold">Obsidian Dark</span>
+          <button id="themeToggleBtn" type="button" class="btn btn-sm btn-outline-secondary text-light py-0 px-2" title="Switch between day and night">
+             <span class="d-none d-sm-inline">Theme:</span> <span id="themeNameLabel" class="text-warning fw-bold">Night</span>
           </button>
         </div>
       </div>
@@ -86,7 +84,6 @@
   <main class="flex-grow-1 py-4 py-lg-5">
     <div class="container">
 
-      <!-- Hero Header Section -->
       <div class="p-4 p-md-5 mb-5 rounded-4 bg-secondary bg-opacity-10 border border-secondary border-opacity-75 shadow-sm text-center">
         <span class="badge bg-warning text-white text-uppercase px-3 py-2 fw-bold mb-2">Our Story</span>
         <h1 class="display-5 fw-bold text-light mb-3">About 404 Cinema</h1>
@@ -95,7 +92,6 @@
         </p>
       </div>
 
-      <!-- Why Moviegoers Choose Us (2 Columns col-md-6) -->
       <section class="mb-5">
         <h2 class="h3 fw-bold text-warning mb-4">Why Moviegoers Choose Us</h2>
         <div class="row g-4">
@@ -130,7 +126,6 @@
         </div>
       </section>
 
-      <!-- Meet the Team (3 Columns col-lg-4 & Bootstrap Cards) -->
       <section class="mb-5">
         <div class="text-center mb-4">
           <span class="badge bg-warning text-white px-3 py-1 mb-2">Team &bull; Group SE-2507</span>
@@ -139,10 +134,9 @@
         </div>
 
         <div class="row g-4">
-          <!-- Member 1 -->
           <div class="col-12 col-md-4 col-lg-4">
             <div class="card h-100 bg-secondary bg-opacity-10 border-secondary border-opacity-75 text-center p-4 rounded-4 shadow-sm hover-card">
-              <img src="images/orig.webp" alt="Diyar Umarov" class="rounded-circle mx-auto mb-3 border border-warning border-3 object-fit-cover shadow" style="width: 120px; height: 120px;">
+              <img decoding="async" src="images/placeholder.svg" data-src="images/orig.webp" alt="Diyar Umarov" class="lazy-image rounded-circle mx-auto mb-3 border border-warning border-3 object-fit-cover shadow" style="width: 120px; height: 120px;">
               <h4 class="h5 fw-bold text-warning mb-1">Diyar Umarov</h4>
               <span class="badge bg-dark border border-secondary text-info team-role-badge py-2 px-3 text-wrap mb-3">Home, Halls &amp; Carousel</span>
               <p class="text-secondary small mb-0">
@@ -151,10 +145,9 @@
             </div>
           </div>
 
-          <!-- Member 2 -->
           <div class="col-12 col-md-4 col-lg-4">
             <div class="card h-100 bg-secondary bg-opacity-10 border-secondary border-opacity-75 text-center p-4 rounded-4 shadow-sm hover-card">
-              <img src="images/aibek.jpg" alt="Aibek Mukhat" class="rounded-circle mx-auto mb-3 border border-warning border-3 object-fit-cover shadow" style="width: 120px; height: 120px;">
+              <img decoding="async" src="images/placeholder.svg" data-src="images/aibek.jpg" alt="Aibek Mukhat" class="lazy-image rounded-circle mx-auto mb-3 border border-warning border-3 object-fit-cover shadow" style="width: 120px; height: 120px;">
               <h4 class="h5 fw-bold text-warning mb-1">Aibek Mukhat</h4>
               <span class="badge bg-dark border border-secondary text-info team-role-badge py-2 px-3 text-wrap mb-3">Schedule, Pricing &amp; Media Queries</span>
               <p class="text-secondary small mb-0">
@@ -163,10 +156,9 @@
             </div>
           </div>
 
-          <!-- Member 3 -->
           <div class="col-12 col-md-4 col-lg-4">
             <div class="card h-100 bg-secondary bg-opacity-10 border-secondary border-opacity-75 text-center p-4 rounded-4 shadow-sm hover-card">
-              <img src="images/anuar.png" alt="Anuar Muratbay" class="rounded-circle mx-auto mb-3 border border-warning border-3 object-fit-cover shadow" style="width: 120px; height: 120px;">
+              <img decoding="async" src="images/placeholder.svg" data-src="images/anuar.png" alt="Anuar Muratbay" class="lazy-image rounded-circle mx-auto mb-3 border border-warning border-3 object-fit-cover shadow" style="width: 120px; height: 120px;">
               <h4 class="h5 fw-bold text-warning mb-1">Anuar Muratbay</h4>
               <span class="badge bg-dark border border-secondary text-info team-role-badge py-2 px-3 text-wrap mb-3">Booking Forms &amp; Navigation</span>
               <p class="text-secondary small mb-0">
@@ -177,7 +169,6 @@
         </div>
       </section>
 
-      <!-- Contact Table (Bootstrap Responsive Table) -->
       <section class="mb-5">
         <h3 class="h4 fw-bold text-warning mb-3">Cinema Department Contacts</h3>
         <div class="table-responsive rounded-3 border border-secondary shadow-sm">
@@ -194,7 +185,7 @@
               <tr>
                 <td class="px-4 py-3 fw-semibold">Box Office &amp; Tickets</td>
                 <td class="px-4 py-3">+7 (700) 123-45-67</td>
-                <td class="px-4 py-3"><a href="mailto:tickets@404cinema.kz" class="text-info text-decoration-none">tickets@404cinema.kz</a></td>
+                <td class="px-4 py-3"><a href="mailto:tickets@404cinema.kz" class="text-info text-decoration-none">tickets@404cinema.kz</a> <button type="button" class="btn btn-sm btn-outline-warning copy-button" data-copy="tickets@404cinema.kz" aria-label="Copy ticket support email">Copy</button></td>
                 <td class="px-4 py-3 text-secondary">10:00 &ndash; 00:00</td>
               </tr>
               <tr>
@@ -217,7 +208,6 @@
     </div>
   </main>
 
-  <!-- Footer -->
   <footer class="bg-black text-light py-4 border-top border-secondary mt-auto" aria-label="Site Footer">
     <div class="container text-center">
       <div class="row gy-3 align-items-center">
@@ -240,10 +230,7 @@
     </div>
   </footer>
 
-  <!-- Bootstrap 5 Bundle JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="js/vendor/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-  <!-- Custom Scripts -->
-  <script src="js/main.js"></script>
-</body>
+  </body>
 </html>
