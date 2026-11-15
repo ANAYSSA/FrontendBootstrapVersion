@@ -64,8 +64,7 @@ All members: integration review, report and presentation rehearsal.
 
 Team repository: https://github.com/d0kus/FrontendBootstrapVersion
 Team website: https://d0kus.github.io/FrontendBootstrapVersion/
-Final project source branch: https://github.com/ANAYSSA/FrontendBootstrapVersion/tree/final-project
-Final project preview: https://anayssa.github.io/FrontendBootstrapVersion/
+Final project pull request: https://github.com/d0kus/FrontendBootstrapVersion/pull/3
 
-The preview runs the final-project branch. The team website receives this version
-when the final-project pull request is merged into the team repository's main branch.
+GitHub Pages uses the team repository's main branch. Merge the final-project pull
+request to publish this version at the existing team website.
