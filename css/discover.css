@@ -1,0 +1,38 @@
+.discover-intro { max-width: 760px; }
+.discover-toolbar { background: var(--cinema-card); }
+.discover-poster {
+  width: 100%;
+  height: 310px;
+  object-fit: cover;
+  background: var(--cinema-card-inner);
+}
+.discover-details summary {
+  color: var(--cinema-orange);
+  cursor: pointer;
+  padding: 8px 0;
+  transition: color 0.2s ease;
+}
+.discover-details summary:hover { color: var(--cinema-orange-light); }
+.discover-details summary:focus-visible {
+  outline: 2px solid var(--cinema-orange);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.discover-status {
+  border: 1px solid var(--cinema-border);
+  background: var(--cinema-card);
+  border-radius: 16px;
+  padding: 40px 24px;
+  text-align: center;
+}
+.discover-attribution a { color: var(--cinema-orange); }
+@media (max-width: 575.98px) {
+  .discover-poster { height: 390px; }
+  .discover-toolbar { padding: 20px !important; }
+}
+[data-bs-theme="light"] .discover-film .text-warning,
+[data-bs-theme="light"] .discover-intro a.text-warning {
+  color: #b84900 !important;
+}
+[data-bs-theme="light"] .discover-details summary,
+[data-bs-theme="light"] .discover-attribution a { color: #b84900; }

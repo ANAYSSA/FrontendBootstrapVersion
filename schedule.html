@@ -9,12 +9,15 @@
 
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/jquery.css">
-  <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
-  <script src="js/jquery-fallback.js"></script>
+  <script src="js/vendor/jquery-4.0.0.min.js"></script>
+  <script src="js/forms.js" defer></script>
+  <script src="js/auth.js" defer></script>
   <script src="js/main.js" defer></script>
   <script src="js/script.js" defer></script>
   <script src="js/schedule.js" defer></script>
   <link rel="icon" type="image/svg+xml" href="images/logo.svg">
+  <link rel="stylesheet" href="css/account.css">
+  <link rel="stylesheet" href="css/final.css">
 </head>
 <body class="bg-dark text-light d-flex flex-column min-vh-100">
   <div id="scrollProgress" role="progressbar" aria-label="Page scroll progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
@@ -37,7 +40,7 @@
       </div>
     </div>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-warning py-3" aria-label="Main Navigation">
+    <nav class="navbar navbar-expand-xl navbar-dark bg-black border-bottom border-warning py-3" aria-label="Main Navigation">
       <div class="container">
         <a class="navbar-brand d-inline-flex align-items-center py-0" href="index.html" aria-label="404 Cinema Home">
           <img src="images/logo.svg" alt="404 Cinema" height="38" class="d-inline-block">
@@ -47,36 +50,17 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarMain">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-1 align-items-lg-center">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="halls.html">Halls &amp; Tech</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active fw-semibold text-warning" aria-current="page" href="schedule.html">Schedule</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pricing.html">Pricing</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="booking.html">Booking</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">About Us</a>
-            </li>
-            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
-              <a class="btn btn-outline-secondary btn-sm text-light px-3" href="media-queries.html" title="Pure CSS Media Queries Demonstration">
-                Responsive Demo
-              </a>
-            </li>
-            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
-              <a class="btn btn-warning btn-sm text-white fw-bold px-3" href="booking.html">
-                Book Tickets
-              </a>
-            </li>
-          </ul>
+          <ul class="navbar-nav ms-auto mb-2 mb-xl-0 gap-xl-1 align-items-xl-center"><li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+<li class="nav-item"><a class="nav-link" href="halls.html">Halls</a></li>
+<li class="nav-item"><a class="nav-link active fw-semibold text-warning" aria-current="page" href="schedule.html">Schedule</a></li>
+<li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+<li class="nav-item"><a class="nav-link" href="discover.html">Discover</a></li>
+<li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
+<li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+<li class="nav-item" data-auth="guest"><a class="nav-link" href="login.html">Log In</a></li>
+<li class="nav-item" data-auth="guest"><a class="btn btn-warning btn-sm ms-xl-2" href="signup.html">Sign Up</a></li>
+<li class="nav-item" data-auth="member" hidden><a class="nav-link" href="profile.html">Profile</a></li>
+<li class="nav-item" data-auth="member" hidden><button type="button" class="btn btn-outline-secondary btn-sm ms-xl-2" data-logout>Log Out</button></li></ul>
         </div>
       </div>
     </nav>
@@ -126,7 +110,7 @@
             <p class="text-secondary small mb-3">
               Remember to bring your student card. Discount can be applied during booking checkout.
             </p>
-            <a href="booking.html" class="btn btn-outline-warning btn-sm w-100 fw-semibold">Apply Discount</a>
+            <a href="booking.html?student=1" class="btn btn-outline-warning btn-sm w-100 fw-semibold">Apply Discount</a>
           </div>
         </aside>
 
@@ -142,12 +126,12 @@
                     <th scope="col" class="py-3 text-warning">Auditorium</th>
                     <th scope="col" class="py-3 text-warning">Time</th>
                     <th scope="col" class="py-3 text-warning">Format</th>
-                    <th scope="col" class="py-3 text-warning">Standard Price</th>
+                    <th scope="col" class="py-3 text-warning">Ticket Price</th>
                     <th scope="col" class="py-3 px-3 text-end text-warning">Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr class="schedule-row" data-hall="1" data-days="weekdays weekend">
+                  <tr class="schedule-row" data-hall="3" data-days="weekdays weekend">
                     <td class="px-3">
                       <img decoding="async" src="images/placeholder.svg" data-src="images/dune.webp" alt="Dune 3" class="lazy-image rounded-2 object-fit-cover shadow-sm" style="width: 55px; height: 75px;">
                     </td>
@@ -155,12 +139,12 @@
                       <div class="fw-bold text-light">Dune: Part Three</div>
                       <div class="small text-secondary">Action / Sci-Fi &bull; 165 min</div>
                     </td>
-                    <td><span class="badge bg-secondary">Hall 1 (IMAX)</span></td>
+                    <td><span class="badge bg-secondary">Hall 3 (Dolby)</span></td>
                     <td><div class="fw-bold text-warning fs-5">14:30</div><div class="small text-secondary">Mon-Sun</div></td>
-                    <td><span class="badge bg-warning text-white">3D IMAX</span></td>
-                    <td class="fw-semibold">3,500 ₸</td>
+                    <td><span class="badge bg-warning text-white">Dolby 2D</span></td>
+                    <td class="fw-semibold">2,600 ₸</td>
                     <td class="px-3 text-end">
-                      <a href="booking.html" class="btn btn-warning btn-sm fw-semibold text-white shadow-sm">Get Ticket</a>
+                      <a href="booking.html?movie=dune3&amp;time=14:30" class="btn btn-warning btn-sm fw-semibold text-white shadow-sm">Get Ticket</a>
                     </td>
                   </tr>
 
@@ -175,9 +159,9 @@
                     <td><span class="badge bg-secondary">Hall 3 (Dolby)</span></td>
                     <td><div class="fw-bold text-warning fs-5">17:15</div><div class="small text-secondary">Mon-Fri</div></td>
                     <td><span class="badge bg-info text-dark">Standard 2D</span></td>
-                    <td class="fw-semibold">1,800 ₸</td>
+                    <td class="fw-semibold">2,200 ₸</td>
                     <td class="px-3 text-end">
-                      <a href="booking.html" class="btn btn-warning btn-sm fw-semibold text-white shadow-sm">Get Ticket</a>
+                      <a href="booking.html?movie=backrooms&amp;time=17:15" class="btn btn-warning btn-sm fw-semibold text-white shadow-sm">Get Ticket</a>
                     </td>
                   </tr>
 
@@ -192,9 +176,9 @@
                     <td><span class="badge bg-secondary">Hall 2 (VIP)</span></td>
                     <td><div class="fw-bold text-warning fs-5">20:00</div><div class="small text-secondary">Sat-Sun</div></td>
                     <td><span class="badge bg-success text-white">2D ATMOS</span></td>
-                    <td class="fw-semibold">2,500 ₸</td>
+                    <td class="fw-semibold">3,900 ₸</td>
                     <td class="px-3 text-end">
-                      <a href="booking.html" class="btn btn-warning btn-sm fw-semibold text-white shadow-sm">Get Ticket</a>
+                      <a href="booking.html?movie=fall2&amp;time=20:00&amp;tier=vip" class="btn btn-warning btn-sm fw-semibold text-white shadow-sm">Get Ticket</a>
                     </td>
                   </tr>
 
@@ -209,13 +193,13 @@
                     <td><span class="badge bg-secondary">Hall 1 (IMAX)</span></td>
                     <td><div class="fw-bold text-warning fs-5">18:00</div><div class="small text-secondary">Sat-Sun</div></td>
                     <td><span class="badge bg-warning text-white">4K IMAX Laser</span></td>
-                    <td class="fw-semibold">3,500 ₸</td>
+                    <td class="fw-semibold">2,800 ₸</td>
                     <td class="px-3 text-end">
-                      <a href="booking.html" class="btn btn-warning btn-sm fw-semibold text-white shadow-sm">Get Ticket</a>
+                      <a href="booking.html?movie=odyssey&amp;time=18:00" class="btn btn-warning btn-sm fw-semibold text-white shadow-sm">Get Ticket</a>
                     </td>
                   </tr>
 
-                  <tr class="schedule-row" data-hall="3" data-days="weekdays">
+                  <tr class="schedule-row" data-hall="1" data-days="weekdays">
                     <td class="px-3">
                       <img decoding="async" src="images/placeholder.svg" data-src="images/spider.jpg" alt="Spider-Man" class="lazy-image rounded-2 object-fit-cover shadow-sm" style="width: 55px; height: 75px;">
                     </td>
@@ -223,12 +207,12 @@
                       <div class="fw-bold text-light">Spider-Man: Brand New Day</div>
                       <div class="small text-secondary">Action / Adventure &bull; 140 min</div>
                     </td>
-                    <td><span class="badge bg-secondary">Hall 3 (Dolby)</span></td>
+                    <td><span class="badge bg-secondary">Hall 1 (IMAX)</span></td>
                     <td><div class="fw-bold text-warning fs-5">12:15</div><div class="small text-secondary">Mon-Fri</div></td>
-                    <td><span class="badge bg-info text-dark">Dolby 2D</span></td>
-                    <td class="fw-semibold">1,800 ₸</td>
+                    <td><span class="badge bg-info text-dark">4K IMAX</span></td>
+                    <td class="fw-semibold">2,800 ₸</td>
                     <td class="px-3 text-end">
-                      <a href="booking.html" class="btn btn-warning btn-sm fw-semibold text-white shadow-sm">Get Ticket</a>
+                      <a href="booking.html?movie=spiderman&amp;time=12:15" class="btn btn-warning btn-sm fw-semibold text-white shadow-sm">Get Ticket</a>
                     </td>
                   </tr>
 
@@ -243,9 +227,9 @@
                     <td><span class="badge bg-secondary">Hall 2 (VIP)</span></td>
                     <td><div class="fw-bold text-warning fs-5">23:00</div><div class="small text-secondary">Mon-Fri</div></td>
                     <td><span class="badge bg-success text-white">2D ATMOS VIP</span></td>
-                    <td class="fw-semibold">2,500 ₸</td>
+                    <td class="fw-semibold">4,000 ₸</td>
                     <td class="px-3 text-end">
-                      <a href="booking.html" class="btn btn-warning btn-sm fw-semibold text-white shadow-sm">Get Ticket</a>
+                      <a href="booking.html?movie=inception&amp;time=23:00&amp;tier=vip" class="btn btn-warning btn-sm fw-semibold text-white shadow-sm">Get Ticket</a>
                     </td>
                   </tr>
                 </tbody>

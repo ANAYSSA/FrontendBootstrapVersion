@@ -67,17 +67,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const navLinks = [...document.querySelectorAll('.navbar-nav .nav-link')];
   navLinks.forEach(link => link.addEventListener('keydown', event => {
-    const current = navLinks.indexOf(document.activeElement);
+    const visibleLinks = navLinks.filter(item => item.offsetParent !== null);
+    const current = visibleLinks.indexOf(document.activeElement);
     let next;
     switch (event.key) {
       case 'ArrowRight':
-      case 'ArrowDown': next = (current + 1) % navLinks.length; break;
+      case 'ArrowDown': next = (current + 1) % visibleLinks.length; break;
       case 'ArrowLeft':
-      case 'ArrowUp': next = (current - 1 + navLinks.length) % navLinks.length; break;
+      case 'ArrowUp': next = (current - 1 + visibleLinks.length) % visibleLinks.length; break;
       default: return;
     }
     event.preventDefault();
-    navLinks[next].focus();
+    visibleLinks[next]?.focus();
   }));
 
   const stars = document.querySelectorAll('#cinemaStarRating .star-item');
@@ -150,44 +151,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  const modal = document.getElementById('cinemaModal');
-  let modalTrigger;
-  function closeModal() {
-    if (!modal) return;
-    modal.classList.remove('show');
-    document.body.style.overflow = '';
-    modalTrigger?.focus();
-    modal.setAttribute('aria-hidden', 'true');
-  }
-  document.querySelectorAll('.js-open-modal').forEach(button => {
-    button.addEventListener('click', event => {
-      if (!modal) return;
-      event.preventDefault();
-      modalTrigger = button;
-      modal.classList.add('show');
-      modal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-      requestAnimationFrame(() => document.getElementById('regName')?.focus());
-    });
-  });
-  document.getElementById('closeModalBtn')?.addEventListener('click', closeModal);
-  modal?.addEventListener('click', event => {
-    if (event.target === modal) closeModal();
-  });
-  document.addEventListener('keydown', event => {
-    if (!modal?.classList.contains('show')) return;
-    if (event.key === 'Escape') closeModal();
-    if (event.key !== 'Tab') return;
-    const controls = [...modal.querySelectorAll('button, input, a[href], select, textarea, [tabindex="0"]')]
-      .filter(control => !control.disabled && control.offsetParent !== null);
-    const first = controls[0];
-    const last = controls[controls.length - 1];
-    if (event.shiftKey && document.activeElement === first) {
-      event.preventDefault();
-      last?.focus();
-    } else if (!event.shiftKey && document.activeElement === last) {
-      event.preventDefault();
-      first?.focus();
-    }
-  });
 });

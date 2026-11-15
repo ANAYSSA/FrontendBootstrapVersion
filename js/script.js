@@ -64,7 +64,9 @@ $(document).ready(function () {
     if ($('#movieSuggestions').prop('hidden') || !options.length) return;
     if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
       event.preventDefault();
-      suggestionIndex = (suggestionIndex + (event.key === 'ArrowDown' ? 1 : -1) + options.length) % options.length;
+      const direction = event.key === 'ArrowDown' ? 1 : -1;
+      suggestionIndex = suggestionIndex < 0 ? (direction === 1 ? 0 : options.length - 1) :
+        (suggestionIndex + direction + options.length) % options.length;
       options.removeClass('selected').attr('aria-selected', 'false');
       options.eq(suggestionIndex).addClass('selected').attr('aria-selected', 'true');
       $(this).attr('aria-activedescendant', options[suggestionIndex].id);
@@ -145,70 +147,6 @@ $(document).ready(function () {
   updateProgress();
   animateCounters();
   revealImages();
-
-  const movie = new URLSearchParams(window.location.search).get('movie');
-  if (movie && $('#movie option').filter(function () { return this.value === movie; }).length) $('#movie').val(movie);
-
-  function validForm(form) {
-    $(form).find('[required]').each(function () {
-      if (this.type === 'email') this.value = this.value.trim();
-      let valid = this.checkValidity();
-      if (this.id === 'fullname' || this.id === 'regName') valid = this.value.trim().length >= 3;
-      if (this.id === 'regPassword') valid = this.value.length >= 8;
-      if (this.id === 'regConfirmPassword') valid = !!this.value && this.value === $('#regPassword').val();
-      $(this).toggleClass('is-invalid', !valid).toggleClass('is-valid', valid);
-      if (this.id.startsWith('reg')) {
-        $(this).siblings('.invalid-feedback').text(this.type === 'checkbox' ? 'Please accept the terms.' : 'Please check this field.');
-      }
-    });
-    const invalid = $(form).find('.is-invalid');
-    if (invalid.length) invalid.first().trigger('focus');
-    return !invalid.length;
-  }
-  function simulateSubmit(data, callback) {
-    setTimeout(() => callback(data), 1400);
-  }
-  $('#booking-form, #clubRegistrationForm').on('submit', function (event) {
-    event.preventDefault();
-    const form = this;
-    if ($(form).data('pending') || !validForm(form)) return;
-    const button = $(form).find('[type="submit"]');
-    const label = button.html();
-    const booking = form.id === 'booking-form';
-    const data = { name: $(booking ? '#fullname' : '#regName').val().trim() };
-    $(form).data('pending', true).attr('aria-busy', 'true');
-    $(form).find('input, select, textarea, button').prop('disabled', true);
-    button.html('<span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>Please wait...');
-    simulateSubmit(data, function (result) {
-      $(form).find('input, select, textarea, button').prop('disabled', false);
-      button.html(label);
-      $(form).data('pending', false).removeAttr('aria-busy');
-      form.reset();
-      $(form).find('.is-valid, .is-invalid').removeClass('is-valid is-invalid');
-      if (booking) {
-        $('#bookingSuccessAlert').remove();
-        const code = 'CINEMA-' + Math.floor(1000 + Math.random() * 9000);
-        const alert = $('<div>', { id: 'bookingSuccessAlert', class: 'alert alert-success mt-3', role: 'status' });
-        alert.append($('<strong>').text(`Demo reservation saved for ${result.name}. `));
-        alert.append($('<span>', { id: 'bookingCode', text: code }));
-        alert.append(' ', $('<button>', { type: 'button', class: 'btn btn-sm btn-outline-success copy-button', 'data-copy': code, text: 'Copy code' }));
-        $(form).prepend(alert);
-        notify('Demo reservation saved.');
-      } else {
-        $('#formSuccessAlert').removeClass('d-none').text(`Thank you, ${result.name}! Your demo registration is complete.`);
-        notify('Demo VIP registration complete.');
-      }
-    });
-  }).on('input change', '[required]', function () {
-    $(this).removeClass('is-invalid is-valid');
-  });
-  $('#resetBookingBtn').on('click', function () {
-    const form = $('#booking-form')[0];
-    form.reset();
-    $(form).find('.is-valid, .is-invalid').removeClass('is-valid is-invalid');
-    $('#bookingSuccessAlert').remove();
-    notify('Reservation form reset.');
-  });
 
   $(document).on('click', '.copy-button', async function () {
     const button = $(this);

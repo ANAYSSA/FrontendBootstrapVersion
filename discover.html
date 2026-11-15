@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discover Films - 404 Cinema</title>
+
+  <link href="css/vendor/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/jquery.css">
+  <link rel="stylesheet" href="css/discover.css">
+  <script src="js/vendor/jquery-4.0.0.min.js"></script>
+  <script src="js/forms.js" defer></script>
+  <script src="js/auth.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/script.js" defer></script>
+  <script src="js/discover.js" defer></script>
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg">
+  <link rel="stylesheet" href="css/account.css">
+  <link rel="stylesheet" href="css/final.css">
+</head>
+<body class="bg-dark text-light d-flex flex-column min-vh-100">
+  <div id="scrollProgress" role="progressbar" aria-label="Page scroll progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+  <div id="siteToast" role="status" aria-live="polite"></div>
+
+  <header class="sticky-top shadow">
+    <div class="bg-black border-bottom border-secondary border-opacity-25 py-1 px-3 small text-secondary">
+      <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <div class="d-flex align-items-center gap-2" id="liveClock">
+          <span class="clock-pulse-dot" title="Live Clock Active"></span>
+          <span class="text-secondary small">Astana Time:</span>
+          <span id="clockText" class="fw-semibold text-warning small">Loading time...</span>
+        </div>
+
+        <div class="d-flex align-items-center gap-2 ms-auto">
+          <button id="themeToggleBtn" type="button" class="btn btn-sm btn-outline-secondary text-light py-0 px-2" title="Switch between day and night">
+             <span class="d-none d-sm-inline">Theme:</span> <span id="themeNameLabel" class="text-warning fw-bold">Night</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <nav class="navbar navbar-expand-xl navbar-dark bg-black border-bottom border-warning py-3" aria-label="Main Navigation">
+      <div class="container">
+        <a class="navbar-brand d-inline-flex align-items-center py-0" href="index.html" aria-label="404 Cinema Home">
+          <img src="images/logo.svg" alt="404 Cinema" height="38" class="d-inline-block">
+        </a>
+        <button class="navbar-toggler border-warning" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarMain">
+          <ul class="navbar-nav ms-auto mb-2 mb-xl-0 gap-xl-1 align-items-xl-center"><li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+<li class="nav-item"><a class="nav-link" href="halls.html">Halls</a></li>
+<li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
+<li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+<li class="nav-item"><a class="nav-link active fw-semibold text-warning" aria-current="page" href="discover.html">Discover</a></li>
+<li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
+<li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+<li class="nav-item" data-auth="guest"><a class="nav-link" href="login.html">Log In</a></li>
+<li class="nav-item" data-auth="guest"><a class="btn btn-warning btn-sm ms-xl-2" href="signup.html">Sign Up</a></li>
+<li class="nav-item" data-auth="member" hidden><a class="nav-link" href="profile.html">Profile</a></li>
+<li class="nav-item" data-auth="member" hidden><button type="button" class="btn btn-outline-secondary btn-sm ms-xl-2" data-logout>Log Out</button></li></ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex-grow-1 py-4 py-lg-5">
+    <div class="container">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-4 mb-4">
+        <div class="discover-intro">
+          <span class="badge bg-warning text-white text-uppercase px-3 py-2 mb-2">Beyond the big screen</span>
+          <h1 class="display-5 fw-bold mb-3">Discover your next film</h1>
+          <p class="lead mb-2">Explore the worlds of Studio Ghibli, from quiet adventures to unforgettable fantasy.</p>
+          <p class="small mb-0">This film library is for discovery. For screenings at 404 Cinema, visit our <a href="schedule.html" class="text-warning">cinema schedule</a>.</p>
+        </div>
+        <button type="button" id="refreshFilms" class="btn btn-outline-warning flex-shrink-0">Refresh catalogue</button>
+      </div>
+
+      <section class="discover-toolbar border rounded-4 p-4 mb-4" aria-label="Film library filters">
+        <div class="row g-3 align-items-end">
+          <div class="col-12 col-md-5">
+            <label for="discoverSearch" class="form-label fw-semibold">Search film titles</label>
+            <input type="search" id="discoverSearch" class="form-control" placeholder="Try Totoro or Spirited Away" disabled>
+          </div>
+          <div class="col-12 col-sm-6 col-md-3">
+            <label for="discoverDirector" class="form-label fw-semibold">Director</label>
+            <select id="discoverDirector" class="form-select" disabled><option value="">All directors</option></select>
+          </div>
+          <div class="col-12 col-sm-6 col-md-2">
+            <label for="discoverSort" class="form-label fw-semibold">Sort by</label>
+            <select id="discoverSort" class="form-select" disabled>
+              <option value="newest">Newest first</option>
+              <option value="oldest">Oldest first</option>
+              <option value="title">Title A-Z</option>
+            </select>
+          </div>
+          <div class="col-12 col-md-2"><button type="button" class="btn btn-outline-secondary w-100" data-reset-discover disabled>Clear filters</button></div>
+        </div>
+      </section>
+
+      <p id="discoverCount" class="small text-secondary" role="status" aria-live="polite"></p>
+      <div id="discoverLoading" class="discover-status mb-4" role="status">
+        <span class="spinner-border text-warning mb-3" aria-hidden="true"></span>
+        <p class="mb-0">Loading the film library...</p>
+      </div>
+      <div id="discoverError" class="discover-status mb-4" role="alert" hidden>
+        <h2 class="h5">The library is unavailable</h2>
+        <p id="discoverErrorText"></p>
+        <button type="button" id="retryFilms" class="btn btn-warning">Try again</button>
+      </div>
+      <div id="discoverEmpty" class="discover-status mb-4" hidden>
+        <h2 class="h5">No films found</h2>
+        <p>Try another title or choose a different director.</p>
+        <button type="button" class="btn btn-outline-warning" data-reset-discover>Clear filters</button>
+      </div>
+      <section id="discoverGrid" class="row g-4 mb-4" aria-label="Studio Ghibli film library" aria-busy="true"></section>
+      <p class="discover-attribution small mb-0">Film information and posters provided through the <a href="https://ghibliapi.vercel.app/" target="_blank" rel="noopener noreferrer">Studio Ghibli API</a>, an unofficial community project. Catalogue availability depends on this public service.</p>
+      <noscript><p class="alert alert-warning mt-3">Please enable JavaScript to load and search the film library.</p></noscript>
+    </div>
+  </main>
+
+  <footer class="bg-black text-light py-4 border-top border-secondary mt-auto" aria-label="Site Footer">
+    <div class="container text-center">
+      <div class="row gy-3 align-items-center">
+        <div class="col-12 col-md-4 text-md-start">
+          <span class="fw-bold text-warning fs-5">404 Cinema</span>
+          <p class="text-secondary small mb-0">&copy; 2026 Cinema Ticket Reservation System.</p>
+        </div>
+        <div class="col-12 col-md-4">
+          <p class="text-light fw-semibold mb-0">Group: <span class="text-warning">SE-2507</span></p>
+        </div>
+        <div class="col-12 col-md-4 text-md-end">
+          <div class="small text-secondary mb-1"><strong>Team:</strong></div>
+          <div class="d-flex justify-content-center justify-content-md-end gap-1 flex-wrap">
+            <span class="badge bg-dark border border-secondary text-warning">Umarov Diyar</span>
+            <span class="badge bg-dark border border-secondary text-warning">Anuar Muratbay</span>
+            <span class="badge bg-dark border border-secondary text-warning">Aibek Mukhat</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/vendor/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  </body>
+</html>

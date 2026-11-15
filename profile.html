@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile - 404 Cinema</title>
+  <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/jquery.css">
+  <link rel="stylesheet" href="css/account.css">
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg">
+  <script src="js/vendor/jquery-4.0.0.min.js"></script>
+  <script src="js/forms.js" defer></script>
+  <script src="js/auth.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/script.js" defer></script>
+  <link rel="stylesheet" href="css/final.css">
+</head>
+<body class="bg-dark text-light d-flex flex-column min-vh-100">
+  <div id="scrollProgress" role="progressbar" aria-label="Page scroll progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+  <div id="siteToast" role="status" aria-live="polite"></div>
+  <header class="sticky-top shadow">
+    <div class="bg-black border-bottom border-secondary border-opacity-25 py-1 px-3 small text-secondary">
+      <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <div class="d-flex align-items-center gap-2" id="liveClock">
+          <span class="clock-pulse-dot" title="Live Clock Active"></span>
+          <span class="text-secondary small">Astana Time:</span>
+          <span id="clockText" class="fw-semibold text-warning small">Loading time...</span>
+        </div>
+
+        <div class="d-flex align-items-center gap-2 ms-auto">
+          <button id="themeToggleBtn" type="button" class="btn btn-sm btn-outline-secondary text-light py-0 px-2" title="Switch between day and night">
+             <span class="d-none d-sm-inline">Theme:</span> <span id="themeNameLabel" class="text-warning fw-bold">Night</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <nav class="navbar navbar-expand-xl navbar-dark bg-black border-bottom border-warning py-3" aria-label="Main Navigation">
+      <div class="container">
+        <a class="navbar-brand d-inline-flex align-items-center py-0" href="index.html" aria-label="404 Cinema Home">
+          <img src="images/logo.svg" alt="404 Cinema" height="38" class="d-inline-block">
+        </a>
+        <button class="navbar-toggler border-warning" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarMain">
+          <ul class="navbar-nav ms-auto mb-2 mb-xl-0 gap-xl-1 align-items-xl-center"><li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+<li class="nav-item"><a class="nav-link" href="halls.html">Halls</a></li>
+<li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
+<li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+<li class="nav-item"><a class="nav-link" href="discover.html">Discover</a></li>
+<li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
+<li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+<li class="nav-item" data-auth="guest"><a class="nav-link" href="login.html">Log In</a></li>
+<li class="nav-item" data-auth="guest"><a class="btn btn-warning btn-sm ms-xl-2" href="signup.html">Sign Up</a></li>
+<li class="nav-item" data-auth="member" hidden><a class="nav-link active fw-semibold text-warning" aria-current="page" href="profile.html">Profile</a></li>
+<li class="nav-item" data-auth="member" hidden><button type="button" class="btn btn-outline-secondary btn-sm ms-xl-2" data-logout>Log Out</button></li></ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+  <main class="flex-grow-1 py-4 py-lg-5">
+    <div class="container account-layout">
+      <div id="accountMessage" class="alert" role="status" aria-live="polite" hidden></div>
+      <section id="profileGuest" class="card rounded-4 shadow p-4 p-md-5 text-center">
+        <span class="text-warning fw-semibold mb-2">Your cinema account</span>
+        <h1 class="h2 fw-bold">Log in to view your profile</h1>
+        <p class="mx-auto account-description">Your profile keeps account details and reservations saved in this browser together.</p>
+        <div class="d-flex flex-wrap justify-content-center gap-2 mt-2">
+          <a href="login.html" class="btn btn-warning account-submit fw-semibold">Log in</a>
+          <a href="signup.html" class="btn btn-outline-warning account-submit fw-semibold">Create account</a>
+        </div>
+      </section>
+      <div id="profileContent" hidden>
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+          <div>
+            <span class="badge bg-warning text-white mb-2">404 Cinema member</span>
+            <h1 class="display-6 fw-bold mb-0">My profile</h1>
+          </div>
+          <button type="button" class="btn btn-outline-secondary text-light account-control" data-logout>Log out</button>
+        </div>
+        <div class="row g-4">
+          <section class="col-12 col-lg-4" aria-labelledby="profileDetailsTitle">
+            <div class="card rounded-4 p-4 shadow-sm h-100">
+              <h2 id="profileDetailsTitle" class="h4 fw-bold mb-4">Account details</h2>
+              <dl class="profile-details mb-0">
+                <dt>Full name</dt><dd id="profileName"></dd>
+                <dt>Email address</dt><dd id="profileEmail"></dd>
+                <dt>Phone number</dt><dd id="profilePhone"></dd>
+              </dl>
+              <p class="small mt-3 mb-0">This practice account and its reservations are saved in this browser.</p>
+            </div>
+          </section>
+          <section class="col-12 col-lg-8" aria-labelledby="profileBookingsTitle">
+            <div class="card rounded-4 p-4 shadow-sm">
+              <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
+                <h2 id="profileBookingsTitle" class="h4 fw-bold mb-0">My reservations <span id="bookingCount" class="text-warning">0</span></h2>
+                <a href="booking.html" class="btn btn-warning fw-semibold account-control">Book tickets</a>
+              </div>
+              <div id="emptyBookings" class="empty-bookings text-center p-4">
+                <h3 class="h5 fw-bold">Your next movie night starts here</h3>
+                <p>No reservations yet. Browse the films or choose a session to save your first booking.</p>
+                <a href="index.html#movies" class="text-warning fw-semibold">Explore now showing &rarr;</a>
+              </div>
+              <div id="profileBookings" class="booking-records"></div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="bg-black text-light py-4 border-top border-secondary mt-auto" aria-label="Site Footer">
+    <div class="container text-center">
+      <div class="row gy-3 align-items-center">
+        <div class="col-12 col-md-4 text-md-start">
+          <span class="fw-bold text-warning fs-5">404 Cinema</span>
+          <p class="text-secondary small mb-0">&copy; 2026 Cinema Ticket Reservation System.</p>
+        </div>
+        <div class="col-12 col-md-4">
+          <p class="text-light fw-semibold mb-0">Group: <span class="text-warning">SE-2507</span></p>
+        </div>
+        <div class="col-12 col-md-4 text-md-end">
+          <div class="small text-secondary mb-1"><strong>Team:</strong></div>
+          <div class="d-flex justify-content-center justify-content-md-end gap-1 flex-wrap">
+            <span class="badge bg-dark border border-secondary text-warning">Umarov Diyar</span>
+            <span class="badge bg-dark border border-secondary text-warning">Anuar Muratbay</span>
+            <span class="badge bg-dark border border-secondary text-warning">Aibek Mukhat</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="js/vendor/bootstrap.bundle.min.js"></script>
+</body>
+</html>
