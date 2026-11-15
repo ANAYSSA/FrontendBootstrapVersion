@@ -411,19 +411,25 @@ p, .lead, .card-text, .text-secondary {
 
 
 [data-bs-theme="light"] {
-  --cinema-bg: #f5f4f1;
-  --cinema-surface: #ffffff;
-  --cinema-card: #ffffff;
-  --cinema-card-inner: #f0eee9;
-  --cinema-border: #d7d9df;
+  --cinema-orange: #9a3d06;
+  --cinema-orange-light: #873504;
+  --cinema-bg: #e6ded1;
+  --cinema-surface: #ded3c2;
+  --cinema-card: #f2eadf;
+  --cinema-card-inner: #e7ddcf;
+  --cinema-border: #bfb09a;
   --cinema-text-primary: #20242e;
-  --cinema-text-secondary: #526071;
-  --cinema-text-muted: #64748b;
-  --bs-body-bg: #f5f4f1;
+  --cinema-text-secondary: #58544f;
+  --cinema-text-muted: #61594f;
+  --bs-body-bg: #e6ded1;
   --bs-body-color: #20242e;
-  --bs-secondary-color: #526071;
-  --bs-border-color: #d7d9df;
-  --bs-dark-rgb: 240, 238, 233;
+  --bs-secondary-color: #58544f;
+  --bs-border-color: #bfb09a;
+  --bs-dark-rgb: 222, 211, 194;
+}
+
+[data-bs-theme="light"] body.bg-dark {
+  background-color: var(--cinema-bg) !important;
 }
 
 [data-bs-theme="light"] .text-light {
@@ -434,16 +440,16 @@ p, .lead, .card-text, .text-secondary {
   --bs-table-color: #20242e;
   --bs-table-striped-color: #20242e;
   --bs-table-hover-color: #20242e;
-  --bs-table-striped-bg: #f0eee9 !important;
-  --bs-table-hover-bg: #e7e9ed !important;
+  --bs-table-striped-bg: #e7ddcf !important;
+  --bs-table-hover-bg: #dbcebd !important;
 }
 
 [data-bs-theme="light"] .btn-dark {
-  --bs-btn-bg: #f0eee9;
+  --bs-btn-bg: #e7ddcf;
   --bs-btn-color: #20242e;
-  --bs-btn-hover-bg: #e7e9ed;
+  --bs-btn-hover-bg: #dbcebd;
   --bs-btn-hover-color: #20242e;
-  --bs-btn-active-bg: #e7e9ed;
+  --bs-btn-active-bg: #dbcebd;
   --bs-btn-active-color: #20242e;
 }
 
@@ -459,11 +465,19 @@ p, .lead, .card-text, .text-secondary {
 [data-bs-theme="light"] .form-select,
 [data-bs-theme="light"] .input-group-text {
   color: #20242e !important;
-  background-color: #ffffff !important;
+  background-color: #f7f1e8 !important;
 }
 
 [data-bs-theme="light"] .text-info {
-  color: #08728a !important;
+  color: #075e70 !important;
+}
+
+[data-bs-theme="light"] .badge.bg-warning {
+  background-color: #bd4c06 !important;
+}
+
+[data-bs-theme="light"] .badge.bg-info {
+  color: var(--cinema-text-primary) !important;
 }
 
 [data-bs-theme="light"] .navbar-brand {

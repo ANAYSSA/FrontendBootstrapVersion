@@ -32,7 +32,7 @@
 }
 [data-bs-theme="light"] .discover-film .text-warning,
 [data-bs-theme="light"] .discover-intro a.text-warning {
-  color: #b84900 !important;
+  color: var(--cinema-orange) !important;
 }
 [data-bs-theme="light"] .discover-details summary,
-[data-bs-theme="light"] .discover-attribution a { color: #b84900; }
+[data-bs-theme="light"] .discover-attribution a { color: var(--cinema-orange); }
