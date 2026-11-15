@@ -9,11 +9,14 @@
 
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/jquery.css">
-  <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
-  <script src="js/jquery-fallback.js"></script>
+  <script src="js/vendor/jquery-4.0.0.min.js"></script>
+  <script src="js/forms.js" defer></script>
+  <script src="js/auth.js" defer></script>
   <script src="js/main.js" defer></script>
   <script src="js/script.js" defer></script>
   <link rel="icon" type="image/svg+xml" href="images/logo.svg">
+  <link rel="stylesheet" href="css/account.css">
+  <link rel="stylesheet" href="css/final.css">
 </head>
 <body class="bg-dark text-light d-flex flex-column min-vh-100">
   <div id="scrollProgress" role="progressbar" aria-label="Page scroll progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
@@ -36,7 +39,7 @@
       </div>
     </div>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-warning py-3" aria-label="Main Navigation">
+    <nav class="navbar navbar-expand-xl navbar-dark bg-black border-bottom border-warning py-3" aria-label="Main Navigation">
       <div class="container">
         <a class="navbar-brand d-inline-flex align-items-center py-0" href="index.html" aria-label="404 Cinema Home">
           <img src="images/logo.svg" alt="404 Cinema" height="38" class="d-inline-block">
@@ -46,36 +49,17 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarMain">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-1 align-items-lg-center">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active fw-semibold text-warning" aria-current="page" href="halls.html">Halls &amp; Tech</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="schedule.html">Schedule</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pricing.html">Pricing</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="booking.html">Booking</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">About Us</a>
-            </li>
-            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
-              <a class="btn btn-outline-secondary btn-sm text-light px-3" href="media-queries.html" title="Pure CSS Media Queries Demonstration">
-                Responsive Demo
-              </a>
-            </li>
-            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
-              <a class="btn btn-warning btn-sm text-white fw-bold px-3" href="booking.html">
-                Book Tickets
-              </a>
-            </li>
-          </ul>
+          <ul class="navbar-nav ms-auto mb-2 mb-xl-0 gap-xl-1 align-items-xl-center"><li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+<li class="nav-item"><a class="nav-link active fw-semibold text-warning" aria-current="page" href="halls.html">Halls</a></li>
+<li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
+<li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+<li class="nav-item"><a class="nav-link" href="discover.html">Discover</a></li>
+<li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
+<li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+<li class="nav-item" data-auth="guest"><a class="nav-link" href="login.html">Log In</a></li>
+<li class="nav-item" data-auth="guest"><a class="btn btn-warning btn-sm ms-xl-2" href="signup.html">Sign Up</a></li>
+<li class="nav-item" data-auth="member" hidden><a class="nav-link" href="profile.html">Profile</a></li>
+<li class="nav-item" data-auth="member" hidden><button type="button" class="btn btn-outline-secondary btn-sm ms-xl-2" data-logout>Log Out</button></li></ul>
         </div>
       </div>
     </nav>

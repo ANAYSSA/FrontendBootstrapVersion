@@ -9,11 +9,15 @@
 
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/jquery.css">
-  <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
-  <script src="js/jquery-fallback.js"></script>
+  <script src="js/vendor/jquery-4.0.0.min.js"></script>
+  <script src="js/forms.js" defer></script>
+  <script src="js/auth.js" defer></script>
   <script src="js/main.js" defer></script>
   <script src="js/script.js" defer></script>
   <link rel="icon" type="image/svg+xml" href="images/logo.svg">
+  <script src="js/booking.js" defer></script>
+  <link rel="stylesheet" href="css/account.css">
+  <link rel="stylesheet" href="css/final.css">
 </head>
 <body class="bg-dark text-light d-flex flex-column min-vh-100">
   <div id="scrollProgress" role="progressbar" aria-label="Page scroll progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
@@ -36,7 +40,7 @@
       </div>
     </div>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-warning py-3" aria-label="Main Navigation">
+    <nav class="navbar navbar-expand-xl navbar-dark bg-black border-bottom border-warning py-3" aria-label="Main Navigation">
       <div class="container">
         <a class="navbar-brand d-inline-flex align-items-center py-0" href="index.html" aria-label="404 Cinema Home">
           <img src="images/logo.svg" alt="404 Cinema" height="38" class="d-inline-block">
@@ -46,36 +50,17 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarMain">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-1 align-items-lg-center">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="halls.html">Halls &amp; Tech</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="schedule.html">Schedule</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pricing.html">Pricing</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active fw-semibold text-warning" aria-current="page" href="booking.html">Booking</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">About Us</a>
-            </li>
-            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
-              <a class="btn btn-outline-secondary btn-sm text-light px-3" href="media-queries.html" title="Pure CSS Media Queries Demonstration">
-                Responsive Demo
-              </a>
-            </li>
-            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
-              <a class="btn btn-warning btn-sm text-white fw-bold px-3 active" href="booking.html">
-                Book Tickets
-              </a>
-            </li>
-          </ul>
+          <ul class="navbar-nav ms-auto mb-2 mb-xl-0 gap-xl-1 align-items-xl-center"><li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+<li class="nav-item"><a class="nav-link" href="halls.html">Halls</a></li>
+<li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
+<li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+<li class="nav-item"><a class="nav-link" href="discover.html">Discover</a></li>
+<li class="nav-item"><a class="nav-link active fw-semibold text-warning" aria-current="page" href="booking.html">Booking</a></li>
+<li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+<li class="nav-item" data-auth="guest"><a class="nav-link" href="login.html">Log In</a></li>
+<li class="nav-item" data-auth="guest"><a class="btn btn-warning btn-sm ms-xl-2" href="signup.html">Sign Up</a></li>
+<li class="nav-item" data-auth="member" hidden><a class="nav-link" href="profile.html">Profile</a></li>
+<li class="nav-item" data-auth="member" hidden><button type="button" class="btn btn-outline-secondary btn-sm ms-xl-2" data-logout>Log Out</button></li></ul>
         </div>
       </div>
     </nav>
@@ -88,7 +73,7 @@
         <span class="badge bg-warning text-white text-uppercase px-3 py-2 fw-bold mb-2">Fast &amp; Convenient</span>
         <h1 class="display-5 fw-bold text-light mb-2">Reserve Your Cinema Seats</h1>
         <p class="text-secondary lead mx-auto" style="max-width: 700px;">
-          Skip box office lines. Pick your movie, hall tier, and favorite row. An instant QR code reservation will be sent straight to your email.
+          Choose a film, session and seating tier. Save your demo reservation to your cinema profile.
         </p>
       </div>
 
@@ -120,10 +105,10 @@
                 Choose seat category (Economy Front, Standard, or Luxury VIP).
               </li>
               <li class="list-group-item bg-transparent text-light border-secondary border-opacity-25 px-0 py-2">
-                Enter your contact info for electronic confirmation.
+                Check your contact details and reservation total.
               </li>
               <li class="list-group-item bg-transparent text-light border-secondary border-opacity-25 px-0 py-2">
-                Present your digital QR code at entry or at the concessions desk.
+                Find your saved reservation and reference code on your Profile page.
               </li>
             </ol>
           </div>
@@ -131,23 +116,24 @@
 
         <div class="col-12 col-lg-7">
           <div class="card shadow-lg p-4 p-md-5 rounded-4">
-            <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="d-flex flex-wrap gap-2 justify-content-between align-items-center mb-4">
               <div>
-                <span class="badge bg-warning text-white px-2 py-1 mb-1 fw-bold">Online Checkout</span>
+                <span class="badge bg-warning text-white px-2 py-1 mb-1 fw-bold">Plan Your Visit</span>
                 <h2 class="h3 text-light fw-bold mb-0">Ticket Reservation Form</h2>
               </div>
               <span class="text-secondary small">All fields marked * are required</span>
             </div>
 
             <p class="small text-secondary">Demo reservation: no payment is taken and no email is sent.</p>
+            <div id="bookingAccess" class="alert alert-info" hidden>Sign in to save a reservation. <a href="login.html">Log in</a> or <a href="signup.html">create an account</a>.</div>
+            <div id="bookingStatus" role="status" aria-live="polite"></div>
             <form id="booking-form" novalidate>
 
               <div class="mb-3">
                 <label for="fullname" class="form-label fw-semibold text-light">Full Name *</label>
                 <div class="input-group has-validation">
                   <span class="input-group-text bg-dark border-secondary text-warning" id="name-addon">Name</span>
-                  <input type="text" class="form-control bg-dark border-secondary text-light" id="fullname" name="fullname" placeholder="e.g. Diyar Umarov" aria-describedby="name-addon" required>
-                  <div class="invalid-feedback">Please enter at least 3 characters.</div>
+                  <input type="text" class="form-control bg-dark border-secondary text-light" id="fullname" name="fullname" placeholder="e.g. Diyar Umarov" aria-describedby="name-addon">
                 </div>
               </div>
 
@@ -155,40 +141,47 @@
                 <label for="email" class="form-label fw-semibold text-light">Email Address *</label>
                 <div class="input-group has-validation">
                   <span class="input-group-text bg-dark border-secondary text-warning" id="email-addon">@</span>
-                  <input type="email" class="form-control bg-dark border-secondary text-light" id="email" name="email" placeholder="you@example.com" aria-describedby="email-addon" required>
-                  <div class="invalid-feedback">Please enter a valid email (e.g. name@domain.com).</div>
+                  <input type="text" inputmode="email" class="form-control bg-dark border-secondary text-light" id="email" name="email" readonly placeholder="you@example.com" aria-describedby="email-addon">
                 </div>
-                <div class="form-text text-secondary">Enter your email for the demo reservation.</div>
+                <div class="form-text text-secondary">Your signed-in account email is used for this reservation.</div>
               </div>
 
+              <div class="mb-3">
+                <label for="phone" class="form-label fw-semibold">Phone number *</label>
+                <input id="phone" name="phone" type="tel" class="form-control" autocomplete="tel" placeholder="+7 701 234 56 78">
+              </div>
               <div class="row g-3 mb-3">
                 <div class="col-12 col-md-7">
                   <label for="movie" class="form-label fw-semibold text-light">Select Movie *</label>
-                  <select class="form-select bg-dark border-secondary text-light" id="movie" name="movie" required>
+                  <select class="form-select bg-dark border-secondary text-light" id="movie" name="movie">
                     <option value="" selected disabled>Choose a feature film...</option>
                     <option value="odyssey">The Odyssey (IMAX 3D) - 2,800 ₸</option>
                     <option value="dune3">Dune: Part Three (Dolby Cinema 2D) - 2,600 ₸</option>
                     <option value="spiderman">Spider-Man: Brand New Day (4K IMAX) - 2,800 ₸</option>
-                    <option value="fall2">Fall 2: Deadpoint (IMAX) - 2,400 ₸</option>
+                    <option value="fall2">Fall 2: Deadpoint (Dolby Cinema) - 2,400 ₸</option>
                     <option value="backrooms">Backrooms (Standard 2D) - 2,200 ₸</option>
                     <option value="inception">Inception: 15th Anniversary - 2,500 ₸</option>
                     <option value="interstellar">Interstellar: Space Odyssey (IMAX 70mm) - 3,200 ₸</option>
                     <option value="avatar">Avatar: Fire and Ash (3D HFR) - 3,000 ₸</option>
                     <option value="batman">The Batman: Part II (Dolby Atmos) - 2,800 ₸</option>
                   </select>
-                  <div class="invalid-feedback">Please choose a movie and showtime.</div>
                 </div>
 
                 <div class="col-12 col-md-5">
                   <label for="sessionTime" class="form-label fw-semibold text-light">Showtime *</label>
-                  <select class="form-select bg-dark border-secondary text-light" id="sessionTime" name="sessionTime" required>
-                    <option value="12:00">12:00 (Morning)</option>
-                    <option value="15:30" selected>15:30 (Matinee)</option>
-                    <option value="18:45">18:45 (Prime time)</option>
-                    <option value="21:30">21:30 (Late Night)</option>
-                    <option value="23:55">23:55 (Midnight)</option>
+                  <select class="form-select bg-dark border-secondary text-light" id="sessionTime" name="sessionTime">
+                    <option value="12:00">12:00</option>
+                    <option value="12:15">12:15</option>
+                    <option value="14:30">14:30</option>
+                    <option value="15:30" selected>15:30</option>
+                    <option value="17:15">17:15</option>
+                    <option value="18:00">18:00</option>
+                    <option value="18:45">18:45</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:30">21:30</option>
+                    <option value="23:00">23:00</option>
+                    <option value="23:55">23:55</option>
                   </select>
-                  <div class="invalid-feedback">Please choose a movie and showtime.</div>
                 </div>
               </div>
 
@@ -241,12 +234,16 @@
               </div>
 
               <div class="form-check mb-4">
-                <input class="form-check-input" type="checkbox" id="termsCheck" required>
+                <input class="form-check-input" type="checkbox" id="termsCheck">
                 <label class="form-check-label small text-secondary" for="termsCheck">
-                  I agree to the 404 Cinema booking terms and understand that tickets can be refunded up to 2 hours before showtime.
+                  I understand this is a demo reservation saved in this browser, without a real payment or ticket.
                 </label>
               </div>
 
+              <div class="reservation-total border-top pt-3 mb-3">
+                <span>Estimated total</span><strong id="bookingTotal" class="text-warning fs-4">0 ₸</strong>
+                <small id="bookingBreakdown" class="d-block text-secondary"></small>
+              </div>
               <div class="booking-actions d-flex flex-wrap align-items-center gap-2">
                 <button type="submit" class="btn btn-warning fw-semibold text-white shadow-sm">
                   Confirm Reservation

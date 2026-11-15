@@ -9,11 +9,14 @@
 
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/jquery.css">
-  <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
-  <script src="js/jquery-fallback.js"></script>
+  <script src="js/vendor/jquery-4.0.0.min.js"></script>
+  <script src="js/forms.js" defer></script>
+  <script src="js/auth.js" defer></script>
   <script src="js/main.js" defer></script>
   <script src="js/script.js" defer></script>
   <link rel="icon" type="image/svg+xml" href="images/logo.svg">
+  <link rel="stylesheet" href="css/account.css">
+  <link rel="stylesheet" href="css/final.css">
 </head>
 <body class="bg-dark text-light d-flex flex-column min-vh-100">
   <div id="scrollProgress" role="progressbar" aria-label="Page scroll progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
@@ -33,14 +36,12 @@
           <button id="themeToggleBtn" type="button" class="btn btn-sm btn-outline-secondary text-light py-0 px-2" title="Switch between day and night">
             <span class="d-none d-sm-inline">Theme:</span> <span id="themeNameLabel" class="text-warning fw-bold">Night</span>
           </button>
-          <button type="button" class="btn btn-sm btn-warning text-white fw-bold py-0 px-2 js-open-modal" title="Open VIP Club Registration Form">
-            VIP Club
-          </button>
+          <a href="signup.html" class="btn btn-sm btn-warning text-white fw-bold py-0 px-2">Join Club</a>
         </div>
       </div>
     </div>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-warning py-3" aria-label="Main Navigation">
+    <nav class="navbar navbar-expand-xl navbar-dark bg-black border-bottom border-warning py-3" aria-label="Main Navigation">
       <div class="container">
         <a class="navbar-brand d-inline-flex align-items-center py-0" href="index.html" aria-label="404 Cinema Home">
           <img src="images/logo.svg" alt="404 Cinema" height="38" class="d-inline-block">
@@ -50,36 +51,17 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarMain">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-1 align-items-lg-center">
-            <li class="nav-item">
-              <a class="nav-link active fw-semibold text-warning" aria-current="page" href="index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="halls.html">Halls &amp; Tech</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="schedule.html">Schedule</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pricing.html">Pricing</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="booking.html">Booking</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">About Us</a>
-            </li>
-            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
-              <a class="btn btn-outline-secondary btn-sm text-light px-3" href="media-queries.html" title="Pure CSS Media Queries Demonstration">
-                Responsive Demo
-              </a>
-            </li>
-            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
-              <a class="btn btn-warning btn-sm text-white fw-bold px-3" href="booking.html">
-                Book Tickets
-              </a>
-            </li>
-          </ul>
+          <ul class="navbar-nav ms-auto mb-2 mb-xl-0 gap-xl-1 align-items-xl-center"><li class="nav-item"><a class="nav-link active fw-semibold text-warning" aria-current="page" href="index.html">Home</a></li>
+<li class="nav-item"><a class="nav-link" href="halls.html">Halls</a></li>
+<li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
+<li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+<li class="nav-item"><a class="nav-link" href="discover.html">Discover</a></li>
+<li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
+<li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+<li class="nav-item" data-auth="guest"><a class="nav-link" href="login.html">Log In</a></li>
+<li class="nav-item" data-auth="guest"><a class="btn btn-warning btn-sm ms-xl-2" href="signup.html">Sign Up</a></li>
+<li class="nav-item" data-auth="member" hidden><a class="nav-link" href="profile.html">Profile</a></li>
+<li class="nav-item" data-auth="member" hidden><button type="button" class="btn btn-outline-secondary btn-sm ms-xl-2" data-logout>Log Out</button></li></ul>
         </div>
       </div>
     </nav>
@@ -166,7 +148,7 @@
                 <span class="badge bg-warning rounded-circle p-1 text-white">&check;</span> Luxury VIP electric recliners with personal service
               </li>
               <li class="d-flex align-items-center gap-2">
-                <span class="badge bg-warning rounded-circle p-1 text-white">&check;</span> Instant online seat reservation with digital QR passes
+                <span class="badge bg-warning rounded-circle p-1 text-white">&check;</span> Save demo reservations in your cinema profile
               </li>
             </ul>
           </div>
@@ -398,7 +380,7 @@
           </button>
           <div class="cinema-accordion-body">
             <div class="cinema-accordion-body-inner">
-              Online ticket reservations can be refunded or exchanged up to 2 hours before the movie screening begins. Simply enter your booking reference code in your profile or show your digital voucher at the box office desk.
+              Online ticket reservations can be refunded or exchanged up to 2 hours before the movie screening begins. This student demo stores reservations in your browser; it does not issue real cinema tickets.
             </div>
           </div>
         </div>
@@ -422,7 +404,7 @@
           </button>
           <div class="cinema-accordion-body">
             <div class="cinema-accordion-body-inner">
-              Club members get 10% bonus cashback on every ticket, free popcorn refills on Thursdays, and exclusive access to premiere pre-screenings with VIP recliner seating.
+              Create a local cinema account to save your contact details and view your demo reservations in one place. Your account and bookings stay in this browser.
             </div>
           </div>
         </div>
@@ -464,67 +446,6 @@
       </div>
     </div>
   </footer>
-
-  <div id="cinemaModal" class="cinema-modal-overlay" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle">
-    <div class="cinema-modal-container">
-
-      <div class="cinema-modal-header">
-        <div>
-          <span class="badge bg-warning text-white mb-1">VIP Privilege</span>
-          <h3 class="h5 fw-bold text-light mb-0" id="modalTitle">Join 404 Cinema Club</h3>
-        </div>
-        <button id="closeModalBtn" type="button" class="cinema-modal-close-btn" aria-label="Close popup">&times;</button>
-      </div>
-
-      <div class="cinema-modal-body">
-        <div id="formSuccessAlert" class="alert alert-success d-none mb-3 py-2 px-3 small" role="alert"></div>
-
-        <p class="text-secondary small mb-3">
-          Sign up to receive 15% off your next ticket booking, weekly premiere invitations, and secret concessions vouchers.
-        </p>
-
-        <form id="clubRegistrationForm" novalidate>
-
-          <div class="mb-3">
-            <label for="regName" class="form-label small fw-semibold text-light">Full Name *</label>
-            <input type="text" class="form-control bg-dark border-secondary text-light" id="regName" placeholder="e.g. Diyar Umarov" required>
-            <div class="invalid-feedback small"></div>
-          </div>
-
-          <div class="mb-3">
-            <label for="regEmail" class="form-label small fw-semibold text-light">Email Address *</label>
-            <input type="email" class="form-control bg-dark border-secondary text-light" id="regEmail" placeholder="name@domain.com" required>
-            <div class="invalid-feedback small"></div>
-          </div>
-
-          <div class="mb-3">
-            <label for="regPassword" class="form-label small fw-semibold text-light">Password * <span class="text-secondary font-monospace">(min 8 chars)</span></label>
-            <input type="password" class="form-control bg-dark border-secondary text-light" id="regPassword" placeholder="Create strong password" required>
-            <div class="invalid-feedback small"></div>
-          </div>
-
-          <div class="mb-3">
-            <label for="regConfirmPassword" class="form-label small fw-semibold text-light">Confirm Password *</label>
-            <input type="password" class="form-control bg-dark border-secondary text-light" id="regConfirmPassword" placeholder="Repeat your password" required>
-            <div class="invalid-feedback small"></div>
-          </div>
-
-          <div class="form-check mb-4">
-            <input class="form-check-input" type="checkbox" id="regTerms" required>
-            <label class="form-check-label text-secondary small" for="regTerms">
-              I accept the <a href="about.html" class="text-warning text-decoration-none">Club Membership Terms</a> and privacy policy.
-            </label>
-            <div class="invalid-feedback small"></div>
-          </div>
-
-          <button type="submit" class="btn btn-warning w-100 fw-bold text-white py-2 shadow-sm">
-            Create VIP Account &rarr;
-          </button>
-        </form>
-      </div>
-
-    </div>
-  </div>
 
   <script src="js/vendor/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 

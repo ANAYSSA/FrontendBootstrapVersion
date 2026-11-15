@@ -1,32 +1,70 @@
-# 404 Cinema - Assignment 6
+# 404 Cinema — Final Project
 
-404 Cinema Team, SE-2507: Diyar Umarov, Aibek Mukhat, Anuar Muratbay.
+404 Cinema Team · SE-2507
+Diyar Umarov · Aibek Mukhat · Anuar Muratbay
 
-## Run
+## Run locally
 
-Open `index.html`, or serve the folder with `python3 -m http.server 8000` and visit `http://localhost:8000`. No build or npm installation is required. jQuery 4.0.0 is included from its CDN in the head, with a bundled fallback. Bootstrap 5.3.3, images, CSS and scripts are included locally.
+Serve this folder with `python3 -m http.server 8000`, then open `http://localhost:8000`.
+There is no build step or npm installation. Bootstrap and jQuery have local copies.
+The Discover film library needs an internet connection. Use HTTP/HTTPS so localStorage
+behaves consistently across pages.
 
-## Assignment 6
+## Pages and features
 
-- Task 0: jQuery setup and the `jQuery is ready!` console message.
-- Tasks 1-3: movie search, keyboard-accessible suggestions and safe text highlighting; searchable FAQs.
-- Tasks 4-5: gradient scroll progress and counters that animate when visible.
-- Tasks 6-7: validated forms with a disabled pending state, spinner and temporary notifications.
-- Task 8: copy reservation codes or the ticket support email, with a checkmark and tooltip.
-- Task 9: jQuery lazy loading for content images near the viewport.
+- Home: movie search, suggestions, highlights, FAQ search, rating and counters.
+- Halls: auditorium overview and booking links.
+- Schedule: day and hall filters; booking links preselect the movie, time and VIP tier.
+- Pricing: consistent movie prices, student discount and VIP options.
+- Booking: signed-in contact details, JavaScript validation, calculated total, pending
+  state, saved reservation and copyable reference.
+- About: project team and cinema information.
+- Discover: Studio Ghibli film API, title search, director filter, sorting and details.
+- Sign Up / Log In: local account simulation, inline validation and duplicate checks.
+- Profile: stored name, email, phone and reservations for the signed-in account.
 
-`js/script.js` contains the jQuery features; `js/main.js` keeps the previous JavaScript features and day/night switch. `js/schedule.js` combines the static weekly programme filters. `css/jquery.css` styles the added components.
+The day/night theme is saved across pages. Responsive layouts, keyboard controls,
+focus styles and reduced-motion support are included.
 
-## Fixes carried forward from Assignment 5
+## JavaScript
 
-Day/night mode persists across the six cinema pages. Clock time uses Asia/Almaty. Arrow navigation is scoped to the menu; rating stars support Enter/Space. The VIP dialog manages focus and Escape. Reset restores the booking form defaults. Movie card links preselect the chosen film.
+`main.js`: theme, clock, navigation, rating and FAQs.
+`script.js`: jQuery search, suggestions, progress, counters, lazy images and copy actions.
+`schedule.js`: combined programme filters.
+`forms.js`: reusable JavaScript validation and accessible inline errors.
+`auth.js`: safe storage helpers, accounts, session and profile.
+`booking.js`: price calculation and saved demo reservations.
+`discover.js`: fetch, loading/error/retry/timeout and safe API rendering.
 
-The booking and VIP forms simulate a server delay. They do not send email, charge payments, reserve real seats or create real accounts. The schedule is an explicitly labelled sample weekly programme. Do not enter real passwords.
+All forms use `novalidate`. Validation covers the fields each form contains: required
+values, email syntax, a 10–15 digit phone number, and passwords of at least 8 characters
+with uppercase, lowercase, a digit and a symbol. Signup also checks confirmation and consent.
 
-## Deployment
+## Data and API
 
-Deployed website: https://d0kus.github.io/FrontendBootstrapVersion/
+Browser keys: `cinema-theme`, `cinema-users`, `cinema-session`, `cinema-bookings`.
+Accounts and passwords are stored locally only to demonstrate the assignment.
+Use invented details and a test password. This is not production authentication.
+No payment, email, real seat reservation or real ticket is created. Clearing site
+storage removes the demo data. Data is separate on localhost, the preview and team site.
 
-Original team repository: https://github.com/d0kus/FrontendBootstrapVersion
+Public community API: https://ghibliapi.vercel.app/films
+Documentation: https://ghibliapi.vercel.app/
+No API key is required. Catalogue films are separate from the sample cinema programme.
+The interface handles loading, request failure, a 12-second timeout and unavailable posters.
 
-GitHub Pages serves the team project from the shared repository's `main` branch.
+## Team division
+
+Diyar: Home, Halls, Discover/API and visual consistency.
+Aibek: Schedule, Pricing, filters, responsive checks and testing.
+Anuar: Booking, About, accounts/profile, validation and local storage.
+All members: integration review, report and presentation rehearsal.
+
+## Hosting
+
+Team repository: https://github.com/d0kus/FrontendBootstrapVersion
+Team website: https://d0kus.github.io/FrontendBootstrapVersion/
+Final project pull request: https://github.com/d0kus/FrontendBootstrapVersion/pull/3
+
+GitHub Pages uses the team repository's main branch. Merge the final-project pull
+request to publish this version at the existing team website.

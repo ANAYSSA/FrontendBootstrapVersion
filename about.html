@@ -9,11 +9,14 @@
 
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/jquery.css">
-  <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
-  <script src="js/jquery-fallback.js"></script>
+  <script src="js/vendor/jquery-4.0.0.min.js"></script>
+  <script src="js/forms.js" defer></script>
+  <script src="js/auth.js" defer></script>
   <script src="js/main.js" defer></script>
   <script src="js/script.js" defer></script>
   <link rel="icon" type="image/svg+xml" href="images/logo.svg">
+  <link rel="stylesheet" href="css/account.css">
+  <link rel="stylesheet" href="css/final.css">
 </head>
 <body class="bg-dark text-light d-flex flex-column min-vh-100">
   <div id="scrollProgress" role="progressbar" aria-label="Page scroll progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
@@ -36,7 +39,7 @@
       </div>
     </div>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-warning py-3" aria-label="Main Navigation">
+    <nav class="navbar navbar-expand-xl navbar-dark bg-black border-bottom border-warning py-3" aria-label="Main Navigation">
       <div class="container">
         <a class="navbar-brand d-inline-flex align-items-center py-0" href="index.html" aria-label="404 Cinema Home">
           <img src="images/logo.svg" alt="404 Cinema" height="38" class="d-inline-block">
@@ -46,36 +49,17 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarMain">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-1 align-items-lg-center">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="halls.html">Halls &amp; Tech</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="schedule.html">Schedule</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pricing.html">Pricing</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="booking.html">Booking</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active fw-semibold text-warning" aria-current="page" href="about.html">About Us</a>
-            </li>
-            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
-              <a class="btn btn-outline-secondary btn-sm text-light px-3" href="media-queries.html" title="Pure CSS Media Queries Demonstration">
-                Responsive Demo
-              </a>
-            </li>
-            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
-              <a class="btn btn-warning btn-sm text-white fw-bold px-3" href="booking.html">
-                Book Tickets
-              </a>
-            </li>
-          </ul>
+          <ul class="navbar-nav ms-auto mb-2 mb-xl-0 gap-xl-1 align-items-xl-center"><li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+<li class="nav-item"><a class="nav-link" href="halls.html">Halls</a></li>
+<li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
+<li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+<li class="nav-item"><a class="nav-link" href="discover.html">Discover</a></li>
+<li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
+<li class="nav-item"><a class="nav-link active fw-semibold text-warning" aria-current="page" href="about.html">About</a></li>
+<li class="nav-item" data-auth="guest"><a class="nav-link" href="login.html">Log In</a></li>
+<li class="nav-item" data-auth="guest"><a class="btn btn-warning btn-sm ms-xl-2" href="signup.html">Sign Up</a></li>
+<li class="nav-item" data-auth="member" hidden><a class="nav-link" href="profile.html">Profile</a></li>
+<li class="nav-item" data-auth="member" hidden><button type="button" class="btn btn-outline-secondary btn-sm ms-xl-2" data-logout>Log Out</button></li></ul>
         </div>
       </div>
     </nav>
@@ -138,9 +122,9 @@
             <div class="card h-100 bg-secondary bg-opacity-10 border-secondary border-opacity-75 text-center p-4 rounded-4 shadow-sm hover-card">
               <img decoding="async" src="images/placeholder.svg" data-src="images/orig.webp" alt="Diyar Umarov" class="lazy-image rounded-circle mx-auto mb-3 border border-warning border-3 object-fit-cover shadow" style="width: 120px; height: 120px;">
               <h4 class="h5 fw-bold text-warning mb-1">Diyar Umarov</h4>
-              <span class="badge bg-dark border border-secondary text-info team-role-badge py-2 px-3 text-wrap mb-3">Home, Halls &amp; Carousel</span>
+              <span class="badge bg-dark border border-secondary text-info team-role-badge py-2 px-3 text-wrap mb-3">Home, Halls &amp; Discover</span>
               <p class="text-secondary small mb-0">
-                Architected the main landing page, the 9-slide interactive carousel showcase, and the multi-tier hall acoustic specs.
+                Built Home and Halls, added the Discover film library with its public API, and maintained the cinema design.
               </p>
             </div>
           </div>
@@ -149,9 +133,9 @@
             <div class="card h-100 bg-secondary bg-opacity-10 border-secondary border-opacity-75 text-center p-4 rounded-4 shadow-sm hover-card">
               <img decoding="async" src="images/placeholder.svg" data-src="images/aibek.jpg" alt="Aibek Mukhat" class="lazy-image rounded-circle mx-auto mb-3 border border-warning border-3 object-fit-cover shadow" style="width: 120px; height: 120px;">
               <h4 class="h5 fw-bold text-warning mb-1">Aibek Mukhat</h4>
-              <span class="badge bg-dark border border-secondary text-info team-role-badge py-2 px-3 text-wrap mb-3">Schedule, Pricing &amp; Media Queries</span>
+              <span class="badge bg-dark border border-secondary text-info team-role-badge py-2 px-3 text-wrap mb-3">Schedule, Pricing &amp; Responsive Design</span>
               <p class="text-secondary small mb-0">
-                Created responsive schedule timetable, pricing tiers, and pure CSS media queries demonstrating responsive typography.
+                Built Schedule and Pricing, connected the filters and ticket options, and checked the layouts across screen sizes.
               </p>
             </div>
           </div>
@@ -160,9 +144,9 @@
             <div class="card h-100 bg-secondary bg-opacity-10 border-secondary border-opacity-75 text-center p-4 rounded-4 shadow-sm hover-card">
               <img decoding="async" src="images/placeholder.svg" data-src="images/anuar.png" alt="Anuar Muratbay" class="lazy-image rounded-circle mx-auto mb-3 border border-warning border-3 object-fit-cover shadow" style="width: 120px; height: 120px;">
               <h4 class="h5 fw-bold text-warning mb-1">Anuar Muratbay</h4>
-              <span class="badge bg-dark border border-secondary text-info team-role-badge py-2 px-3 text-wrap mb-3">Booking Forms &amp; Navigation</span>
+              <span class="badge bg-dark border border-secondary text-info team-role-badge py-2 px-3 text-wrap mb-3">Booking, About &amp; Accounts</span>
               <p class="text-secondary small mb-0">
-                Engineered the responsive online reservation form, global Bootstrap navigation toggler, and accessibility compliance.
+                Built Booking and About, added Sign Up, Log In and Profile, and implemented form validation and browser storage.
               </p>
             </div>
           </div>

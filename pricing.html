@@ -9,11 +9,14 @@
 
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/jquery.css">
-  <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
-  <script src="js/jquery-fallback.js"></script>
+  <script src="js/vendor/jquery-4.0.0.min.js"></script>
+  <script src="js/forms.js" defer></script>
+  <script src="js/auth.js" defer></script>
   <script src="js/main.js" defer></script>
   <script src="js/script.js" defer></script>
   <link rel="icon" type="image/svg+xml" href="images/logo.svg">
+  <link rel="stylesheet" href="css/account.css">
+  <link rel="stylesheet" href="css/final.css">
 </head>
 <body class="bg-dark text-light d-flex flex-column min-vh-100">
   <div id="scrollProgress" role="progressbar" aria-label="Page scroll progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
@@ -36,7 +39,7 @@
       </div>
     </div>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-warning py-3" aria-label="Main Navigation">
+    <nav class="navbar navbar-expand-xl navbar-dark bg-black border-bottom border-warning py-3" aria-label="Main Navigation">
       <div class="container">
         <a class="navbar-brand d-inline-flex align-items-center py-0" href="index.html" aria-label="404 Cinema Home">
           <img src="images/logo.svg" alt="404 Cinema" height="38" class="d-inline-block">
@@ -46,36 +49,17 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarMain">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-1 align-items-lg-center">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="halls.html">Halls &amp; Tech</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="schedule.html">Schedule</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active fw-semibold text-warning" aria-current="page" href="pricing.html">Pricing</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="booking.html">Booking</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">About Us</a>
-            </li>
-            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
-              <a class="btn btn-outline-secondary btn-sm text-light px-3" href="media-queries.html" title="Pure CSS Media Queries Demonstration">
-                Responsive Demo
-              </a>
-            </li>
-            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
-              <a class="btn btn-warning btn-sm text-white fw-bold px-3" href="booking.html">
-                Book Tickets
-              </a>
-            </li>
-          </ul>
+          <ul class="navbar-nav ms-auto mb-2 mb-xl-0 gap-xl-1 align-items-xl-center"><li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+<li class="nav-item"><a class="nav-link" href="halls.html">Halls</a></li>
+<li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
+<li class="nav-item"><a class="nav-link active fw-semibold text-warning" aria-current="page" href="pricing.html">Pricing</a></li>
+<li class="nav-item"><a class="nav-link" href="discover.html">Discover</a></li>
+<li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
+<li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+<li class="nav-item" data-auth="guest"><a class="nav-link" href="login.html">Log In</a></li>
+<li class="nav-item" data-auth="guest"><a class="btn btn-warning btn-sm ms-xl-2" href="signup.html">Sign Up</a></li>
+<li class="nav-item" data-auth="member" hidden><a class="nav-link" href="profile.html">Profile</a></li>
+<li class="nav-item" data-auth="member" hidden><button type="button" class="btn btn-outline-secondary btn-sm ms-xl-2" data-logout>Log Out</button></li></ul>
         </div>
       </div>
     </nav>
@@ -88,14 +72,14 @@
         <span class="badge bg-warning text-white text-uppercase px-3 py-2 fw-bold mb-2">Transparent Pricing</span>
         <h1 class="display-5 fw-bold text-light mb-2">Pricing, Packages &amp; Offers</h1>
         <p class="text-secondary lead mx-auto" style="max-width: 720px;">
-          Find the best screening rates for students, families, late-night cinema fans, and private screenings.
+          Compare demo ticket prices, student savings, and optional VIP seating before you book.
         </p>
       </div>
 
       <section class="mb-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
           <h2 class="h3 fw-bold text-light mb-0">Active Cinema Promotions</h2>
-          <span class="badge bg-warning text-white">Special Rates</span>
+          <span class="badge bg-warning text-white">Late Sessions</span>
         </div>
 
         <div class="row g-4">
@@ -107,11 +91,11 @@
               </div>
               <h4 class="h5 fw-bold text-light mb-2">Student Discount</h4>
               <p class="text-secondary small flex-grow-1">
-                Valid Monday to Friday across all standard, 3D, and IMAX sessions. Simply show your university student ID card upon entry.
+                Select the student option at checkout to reduce your ticket and seating price by 25%. Snacks are charged separately.
               </p>
               <div class="mt-3 pt-3 border-top border-secondary border-opacity-25 d-flex justify-content-between align-items-center">
-                <span class="text-warning fw-bold">From 1,800 ₸</span>
-                <a href="booking.html" class="btn btn-warning btn-sm fw-semibold text-white">Book Now</a>
+                <span class="text-warning fw-bold">From 1,650 ₸</span>
+                <a href="booking.html?student=1" class="btn btn-warning btn-sm fw-semibold text-white">Book Now</a>
               </div>
             </div>
           </div>
@@ -119,16 +103,16 @@
           <div class="col-12 col-md-4 col-lg-4">
             <div class="card h-100 p-4 rounded-4 shadow-sm hover-card">
               <div class="d-flex justify-content-between align-items-start gap-2 mb-3">
-                <span class="badge bg-info text-dark fw-bold">Family Bundle</span>
-                <span class="text-info fw-bold fs-5 text-end ms-auto lh-sm">Save 20%</span>
+                <span class="badge bg-info text-dark fw-bold">Premium Seating</span>
+                <span class="text-info fw-bold fs-5 text-end ms-auto lh-sm">+1,500 ₸</span>
               </div>
-              <h4 class="h5 fw-bold text-light mb-2">Family Tuesday</h4>
+              <h4 class="h5 fw-bold text-light mb-2">Luxury VIP Seats</h4>
               <p class="text-secondary small flex-grow-1">
-                Purchase 3 or more tickets for daytime family screenings and receive a complimentary large popcorn and drink package.
+                Upgrade your reservation to a VIP recliner for an additional 1,500 ₸. The total updates immediately in the booking form.
               </p>
               <div class="mt-3 pt-3 border-top border-secondary border-opacity-25 d-flex justify-content-between align-items-center">
-                <span class="text-info fw-bold">Family Matinee</span>
-                <a href="booking.html" class="btn btn-outline-info btn-sm fw-semibold">Learn More</a>
+                <span class="text-info fw-bold">VIP Upgrade</span>
+                <a href="booking.html?tier=vip" class="btn btn-outline-info btn-sm fw-semibold">Choose VIP</a>
               </div>
             </div>
           </div>
@@ -137,15 +121,15 @@
             <div class="card h-100 p-4 rounded-4 shadow-sm hover-card">
               <div class="d-flex justify-content-between align-items-start gap-2 mb-3">
                 <span class="badge bg-secondary text-light fw-bold">Night Owls</span>
-                <span class="text-warning fw-bold fs-5 text-end ms-auto lh-sm">Special Rate</span>
+                <span class="text-warning fw-bold fs-5 text-end ms-auto lh-sm">Late Sessions</span>
               </div>
               <h4 class="h5 fw-bold text-light mb-2">Midnight Screenings</h4>
               <p class="text-secondary small flex-grow-1">
-                Enjoy atmospheric thriller, sci-fi, and horror marathons starting after 23:00 on Fridays and Saturdays with special night rates.
+                Browse our sample late-night programme, including the 23:00 Inception session. Showtimes and ticket categories are preselected when you book.
               </p>
               <div class="mt-3 pt-3 border-top border-secondary border-opacity-25 d-flex justify-content-between align-items-center">
-                <span class="text-warning fw-bold">Fixed 2,000 ₸</span>
-                <a href="booking.html" class="btn btn-outline-warning btn-sm fw-semibold">Check Times</a>
+                <span class="text-warning fw-bold">After 23:00</span>
+                <a href="schedule.html" class="btn btn-outline-warning btn-sm fw-semibold">Check Times</a>
               </div>
             </div>
           </div>
@@ -153,78 +137,27 @@
       </section>
 
       <section class="mb-5">
-        <h3 class="h4 fw-bold text-warning mb-3">Standard Ticket Price Matrix</h3>
+        <h3 class="h4 fw-bold text-warning mb-3">Demo Ticket Prices</h3>
+        <p class="text-secondary">Prices are per ticket. VIP adds 1,500 ₸ before the 25% student discount. The optional popcorn combo costs 1,500 ₸.</p>
         <div class="table-responsive rounded-3 border border-secondary shadow-sm">
           <table class="table table-dark table-hover table-striped mb-0 text-center">
-            <thead class="table-black border-bottom border-warning">
-              <tr>
-                <th scope="col" class="py-3 px-4 text-start text-warning">Auditorium / Format</th>
-                <th scope="col" class="py-3 px-4 text-warning">Morning (Before 14:00)</th>
-                <th scope="col" class="py-3 px-4 text-warning">Standard (14:00 &ndash; 18:00)</th>
-                <th scope="col" class="py-3 px-4 text-warning">Evening Prime (After 18:00)</th>
-                <th scope="col" class="py-3 px-4 text-warning">Student Rate</th>
-              </tr>
-            </thead>
+            <thead><tr><th scope="col" class="text-start px-4 py-3">Movie</th><th scope="col">Base price</th><th scope="col">Student price</th><th scope="col">VIP price</th></tr></thead>
             <tbody>
-              <tr>
-                <td class="text-start px-4 py-3 fw-semibold">Standard 2D Screen</td>
-                <td class="px-4 py-3">1,800 ₸</td>
-                <td class="px-4 py-3">2,200 ₸</td>
-                <td class="px-4 py-3">2,500 ₸</td>
-                <td class="px-4 py-3 text-warning fw-bold">1,650 ₸</td>
-              </tr>
-              <tr>
-                <td class="text-start px-4 py-3 fw-semibold">Dolby Cinema 2D / 3D</td>
-                <td class="px-4 py-3">2,200 ₸</td>
-                <td class="px-4 py-3">2,600 ₸</td>
-                <td class="px-4 py-3">2,900 ₸</td>
-                <td class="px-4 py-3 text-warning fw-bold">1,950 ₸</td>
-              </tr>
-              <tr>
-                <td class="text-start px-4 py-3 fw-semibold">4K IMAX Laser 3D</td>
-                <td class="px-4 py-3">2,400 ₸</td>
-                <td class="px-4 py-3">2,800 ₸</td>
-                <td class="px-4 py-3">3,200 ₸</td>
-                <td class="px-4 py-3 text-warning fw-bold">2,100 ₸</td>
-              </tr>
-              <tr>
-                <td class="text-start px-4 py-3 fw-semibold">VIP Premium Lounge</td>
-                <td class="px-4 py-3">3,800 ₸</td>
-                <td class="px-4 py-3">4,500 ₸</td>
-                <td class="px-4 py-3">5,000 ₸</td>
-                <td class="px-4 py-3 text-warning fw-bold">3,750 ₸</td>
-              </tr>
+              <tr><th scope="row" class="text-start px-4 py-3 fw-semibold">Backrooms</th><td>2,200 ₸</td><td>1,650 ₸</td><td>3,700 ₸</td></tr>
+              <tr><th scope="row" class="text-start px-4 py-3 fw-semibold">Fall 2: Deadpoint</th><td>2,400 ₸</td><td>1,800 ₸</td><td>3,900 ₸</td></tr>
+              <tr><th scope="row" class="text-start px-4 py-3 fw-semibold">Inception</th><td>2,500 ₸</td><td>1,875 ₸</td><td>4,000 ₸</td></tr>
+              <tr><th scope="row" class="text-start px-4 py-3 fw-semibold">Dune: Part Three</th><td>2,600 ₸</td><td>1,950 ₸</td><td>4,100 ₸</td></tr>
+              <tr><th scope="row" class="text-start px-4 py-3 fw-semibold">The Odyssey / Spider-Man / The Batman</th><td>2,800 ₸</td><td>2,100 ₸</td><td>4,300 ₸</td></tr>
+              <tr><th scope="row" class="text-start px-4 py-3 fw-semibold">Avatar: Fire and Ash</th><td>3,000 ₸</td><td>2,250 ₸</td><td>4,500 ₸</td></tr>
+              <tr><th scope="row" class="text-start px-4 py-3 fw-semibold">Interstellar</th><td>3,200 ₸</td><td>2,400 ₸</td><td>4,700 ₸</td></tr>
             </tbody>
           </table>
         </div>
       </section>
 
-      <section class="mb-5">
-        <div class="card bg-secondary bg-opacity-10 border-secondary border-opacity-75 p-4 rounded-4 shadow-sm">
-          <div class="mb-3">
-            <h3 class="h4 fw-bold text-light mb-0">Ticket Refund &amp; Cancellation Policy</h3>
-          </div>
-          <div class="row g-3">
-            <div class="col-12 col-md-4">
-              <div class="p-3 bg-dark rounded-3 border border-success border-opacity-50">
-                <span class="badge bg-success mb-2">100% Full Refund</span>
-                <p class="small text-secondary mb-0">Cancel more than 30 minutes before showtime for an automatic 100% instant card refund.</p>
-              </div>
-            </div>
-            <div class="col-12 col-md-4">
-              <div class="p-3 bg-dark rounded-3 border border-warning border-opacity-50">
-                <span class="badge bg-warning text-white mb-2">80% Partial Refund</span>
-                <p class="small text-secondary mb-0">Cancellations made within 30 minutes prior to movie start incur a 20% processing fee.</p>
-              </div>
-            </div>
-            <div class="col-12 col-md-4">
-              <div class="p-3 bg-dark rounded-3 border border-danger border-opacity-50">
-                <span class="badge bg-danger mb-2">No Refund</span>
-                <p class="small text-secondary mb-0">Refund requests cannot be accepted after the auditorium projector has started.</p>
-              </div>
-            </div>
-          </div>
-        </div>
+      <section class="card p-4 rounded-4 mb-5">
+        <h3 class="h4 fw-bold">Before you reserve</h3>
+        <p class="text-secondary mb-0">This student project saves demo reservations in your browser. No money is charged and no real ticket is issued. Sign in to view your saved reservations on the Profile page.</p>
       </section>
 
       <section class="card bg-secondary bg-opacity-10 border-secondary border-opacity-50 p-4 rounded-4 shadow-sm">

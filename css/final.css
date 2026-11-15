@@ -1,0 +1,31 @@
+html { scroll-padding-top: 150px; }
+body { overflow-wrap: break-word; }
+.btn-warning, .btn-brand { background-color: #bd4c06 !important; border-color: #bd4c06 !important; color: #fff !important; }
+.btn-warning:hover, .btn-brand:hover { background-color: #9b3c02 !important; border-color: #9b3c02 !important; }
+.btn { transition: background-color .2s ease, transform .2s ease, box-shadow .2s ease; }
+.btn:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid #f59e0b; outline-offset: 3px; }
+[data-bs-theme="light"] .text-warning, [data-bs-theme="light"] .text-orange { color: #b24805 !important; }
+[data-bs-theme="light"] .btn-outline-warning { color: #a94404 !important; border-color: #a94404 !important; }
+[data-bs-theme="light"] .btn-outline-warning:hover { color: #fff !important; background: #a94404 !important; }
+.navbar-nav .nav-link { white-space: nowrap; }
+.form-control, .form-select { min-height: 44px; }
+.reservation-total { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.reservation-total small { flex-basis: 100%; }
+#bookingStatus:empty { display: none; }
+#bookingAccess a, .alert a { color: inherit; font-weight: 600; }
+#booking-form .invalid-feedback { font-size: .875rem; }
+[data-bs-theme="dark"] .invalid-feedback { color: #ff9f9f; }
+[data-bs-theme="light"] .invalid-feedback { color: #b32632; }
+[aria-busy="true"] { cursor: progress; }
+@media (max-width: 575px) {
+  .navbar { padding-top: 12px !important; padding-bottom: 12px !important; }
+  .booking-actions { align-items: stretch !important; }
+  #booking-form .booking-actions [type="submit"] { min-width: 190px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+.bg-warning, .bg-orange, .bg-brand { background-color: #bd4c06 !important; }
+[data-bs-theme="light"] .btn-outline-info { color: #08728a; border-color: #08728a; }
+[data-bs-theme="light"] .btn-outline-info:hover { color: #fff; background-color: #08728a; }
+[data-bs-theme="light"] .btn-outline-secondary:hover,
+[data-bs-theme="light"] .btn-outline-secondary:hover .text-warning { color: #fff !important; background-color: #526071; }
