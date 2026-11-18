@@ -49,7 +49,8 @@
       return value.trim().length >= 3 ? '' : 'Enter your full name using at least 3 characters.';
     },
     email(value) {
-      return /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i.test(value.trim()) && !value.includes('..')
+      const email = /^[a-z0-9_%+-]+(?:\.[a-z0-9_%+-]+)*@(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}$/i;
+      return email.test(value.trim())
         ? '' : 'Enter a valid email address, for example name@example.com.';
     },
     phone(value) {

@@ -161,26 +161,23 @@
                     <option value="fall2">Fall 2: Deadpoint (Dolby Cinema) - 2,400 ₸</option>
                     <option value="backrooms">Backrooms (Standard 2D) - 2,200 ₸</option>
                     <option value="inception">Inception: 15th Anniversary - 2,500 ₸</option>
-                    <option value="interstellar">Interstellar: Space Odyssey (IMAX 70mm) - 3,200 ₸</option>
-                    <option value="avatar">Avatar: Fire and Ash (3D HFR) - 3,000 ₸</option>
-                    <option value="batman">The Batman: Part II (Dolby Atmos) - 2,800 ₸</option>
+                    <option value="interstellar" disabled>Interstellar: Space Odyssey (IMAX 70mm) — no scheduled sessions</option>
+                    <option value="avatar" disabled>Avatar: Fire and Ash (3D HFR) — no scheduled sessions</option>
+                    <option value="batman" disabled>The Batman: Part II (Dolby Atmos) — no scheduled sessions</option>
                   </select>
                 </div>
 
                 <div class="col-12 col-md-5">
                   <label for="sessionTime" class="form-label fw-semibold text-light">Showtime *</label>
                   <select class="form-select bg-dark border-secondary text-light" id="sessionTime" name="sessionTime">
-                    <option value="12:00">12:00</option>
-                    <option value="12:15">12:15</option>
-                    <option value="14:30">14:30</option>
-                    <option value="15:30" selected>15:30</option>
-                    <option value="17:15">17:15</option>
-                    <option value="18:00">18:00</option>
-                    <option value="18:45">18:45</option>
-                    <option value="20:00">20:00</option>
-                    <option value="21:30">21:30</option>
-                    <option value="23:00">23:00</option>
-                    <option value="23:55">23:55</option>
+                    <option value="">Choose a film first</option>
+                    <option data-movie="dune3" value="14:30 weekdays">14:30 · Mon–Fri</option>
+                    <option data-movie="dune3" value="14:30 weekend">14:30 · Sat–Sun</option>
+                    <option data-movie="backrooms" value="17:15 weekdays">17:15 · Mon–Fri</option>
+                    <option data-movie="fall2" value="20:00 weekend">20:00 · Sat–Sun</option>
+                    <option data-movie="odyssey" value="18:00 weekend">18:00 · Sat–Sun</option>
+                    <option data-movie="spiderman" value="12:15 weekdays">12:15 · Mon–Fri</option>
+                    <option data-movie="inception" value="23:00 weekdays">23:00 · Mon–Fri</option>
                   </select>
                 </div>
               </div>
@@ -223,7 +220,7 @@
                 <div class="form-check mb-1">
                   <input class="form-check-input" type="checkbox" id="studentDiscountCheck" name="studentDiscount">
                   <label class="form-check-label text-secondary" for="studentDiscountCheck">
-                    Apply 25% Student Discount (Must present valid student ID at entry)
+                    Apply 25% Student Discount (Mon–Fri with a valid student ID)
                   </label>
                 </div>
               </div>

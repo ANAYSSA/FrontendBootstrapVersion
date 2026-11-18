@@ -2,8 +2,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('booking-form');
   if (!form) return;
   const field = id => document.getElementById(id);
-  const prices = { odyssey: 2800, dune3: 2600, spiderman: 2800, fall2: 2400, backrooms: 2200, inception: 2500, interstellar: 3200, avatar: 3000, batman: 2800 };
-  const times = ['12:00', '12:15', '14:30', '15:30', '17:15', '18:00', '18:45', '20:00', '21:30', '23:00', '23:55'];
+  const prices = { odyssey: 2800, dune3: 2600, spiderman: 2800, fall2: 2400, backrooms: 2200, inception: 2500 };
+  const movie = field('movie');
+  const showtime = field('sessionTime');
+  const discountBox = field('studentDiscountCheck');
+  const [placeholder, ...sessions] = showtime.options;
+
+  function updateShowtimes() {
+    const available = sessions.filter(option => option.dataset.movie === movie.value);
+    showtime.replaceChildren(...(available.length ? available : [placeholder]));
+    showtime.selectedIndex = 0;
+    showtime.disabled = !available.length;
+  }
+
+  function weekdaySession() {
+    return showtime.value.endsWith(' weekdays');
+  }
+
+  function updateDiscount() {
+    discountBox.disabled = !!showtime.value && !weekdaySession();
+    if (discountBox.disabled) discountBox.checked = false;
+  }
+
   let pending = false;
   function fillAccount() {
     const user = CinemaAuth.currentUser();
@@ -19,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const base = prices[field('movie').value] || 0;
     const tier = form.querySelector('[name="seatingTier"]:checked')?.value || 'middle';
     const ticket = base ? base + (tier === 'vip' ? 1500 : 0) : 0;
-    const discount = field('studentDiscountCheck').checked ? Math.round(ticket * 0.25) : 0;
+    const discount = weekdaySession() && discountBox.checked ? Math.round(ticket * 0.25) : 0;
     const extras = base && field('comboPopcorn').checked ? 1500 : 0;
     const sum = ticket - discount + extras;
     field('bookingTotal').textContent = sum.toLocaleString('en-US') + ' ₸';
@@ -28,18 +48,36 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   fillAccount();
   const query = new URLSearchParams(location.search);
-  if (prices[query.get('movie')]) field('movie').value = query.get('movie');
-  if (times.includes(query.get('time'))) field('sessionTime').value = query.get('time');
+  if (sessions.some(option => option.dataset.movie === query.get('movie'))) movie.value = query.get('movie');
+  updateShowtimes();
+  const requestedSession = query.get('time') + ' ' + query.get('period');
+  if (Array.from(showtime.options).some(option => option.value === requestedSession)) showtime.value = requestedSession;
   if (query.get('tier') === 'vip') field('tierVip').checked = true;
-  if (query.get('student') === '1') field('studentDiscountCheck').checked = true;
+  discountBox.checked = query.get('student') === '1';
+  updateDiscount();
   total();
-  form.addEventListener('change', total);
+
+  form.addEventListener('change', event => {
+    if (event.target === movie) updateShowtimes();
+    updateDiscount();
+    total();
+  });
+
+  function resetBooking() {
+    form.reset();
+    fillAccount();
+    updateShowtimes();
+    updateDiscount();
+    total();
+    CinemaForms.clear(form);
+  }
+
   const rules = {
     fullname: CinemaForms.rules.name,
-    email: CinemaForms.rules.email,
+    email: CinemaAuth.checkAccountEmail,
     phone: CinemaForms.rules.phone,
     movie: value => prices[value] ? '' : 'Choose a movie.',
-    sessionTime: value => times.includes(value) ? '' : 'Choose a showtime.',
+    sessionTime: value => sessions.some(option => option.dataset.movie === movie.value && option.value === value) ? '' : 'Choose a showtime.',
     termsCheck: (value, element) => element.checked ? '' : 'Please confirm that you understand this is a demo.'
   };
   form.addEventListener('submit', event => {
@@ -52,7 +90,9 @@ document.addEventListener('DOMContentLoaded', () => {
       code: 'CINEMA-' + Date.now().toString(36).toUpperCase(),
       email: user.email,
       movie: field('movie').selectedOptions[0].textContent.split(' - ')[0],
-      time: field('sessionTime').value,
+      time: showtime.value.split(' ')[0],
+      showtimeLabel: showtime.selectedOptions[0].textContent,
+      note: field('comment').value.trim(),
       tier: form.querySelector('[name="seatingTier"]:checked').value,
       total: total(),
       createdAt: new Date().toISOString()
@@ -79,18 +119,17 @@ document.addEventListener('DOMContentLoaded', () => {
         copy.dataset.copy = record.code; copy.textContent = 'Copy code';
         const profile = document.createElement('a'); profile.href = 'profile.html'; profile.textContent = 'View in Profile';
         status.append(text, copy, profile);
-        form.reset(); fillAccount(); total();
-        CinemaForms.clear(form);
         $('#siteToast').stop(true, true).text('Demo reservation saved.').fadeIn(180).delay(2500).fadeOut(350);
       } else status.textContent = sameUser ? 'Unable to save. Enable browser storage and try again.' : 'Your session changed. Please sign in and try again.';
       controls.forEach(control => control.disabled = false);
+      if (saved) resetBooking();
+      else updateDiscount();
       button.textContent = 'Confirm Reservation'; form.removeAttribute('aria-busy'); pending = false;
       status.scrollIntoView({ block: 'center', behavior: 'smooth' });
     }, 1000);
   });
   field('resetBookingBtn').addEventListener('click', () => {
-    form.reset(); fillAccount(); total();
-    CinemaForms.clear(form);
+    resetBooking();
     field('bookingStatus').replaceChildren(); field('bookingStatus').className = '';
   });
 });

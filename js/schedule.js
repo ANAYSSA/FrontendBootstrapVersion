@@ -10,7 +10,14 @@ $(document).ready(function () {
       const visible = (hall === 'all' || row.attr('data-hall') === hall) &&
         (period === 'all' || row.attr('data-days').split(' ').includes(period));
       row.toggle(visible);
-      if (visible) matches++;
+      if (visible) {
+        matches++;
+        const link = this.querySelector('a[href]');
+        const url = new URL(link.href);
+        if (period === 'all') url.searchParams.delete('period');
+        else url.searchParams.set('period', period);
+        link.href = url.href;
+      }
     });
     $('#scheduleEmpty').prop('hidden', matches > 0);
     $(window).trigger('scroll');

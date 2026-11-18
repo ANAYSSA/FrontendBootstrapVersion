@@ -137,7 +137,7 @@ p, .lead, .card-text, .text-secondary {
 }
 
 .badge.bg-warning {
-  background-color: #f97316 !important;
+  background-color: #bd4c06 !important;
   color: #ffffff !important;
 }
 
@@ -470,10 +470,6 @@ p, .lead, .card-text, .text-secondary {
 
 [data-bs-theme="light"] .text-info {
   color: #075e70 !important;
-}
-
-[data-bs-theme="light"] .badge.bg-warning {
-  background-color: #bd4c06 !important;
 }
 
 [data-bs-theme="light"] .badge.bg-info {

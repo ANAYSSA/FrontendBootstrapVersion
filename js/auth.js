@@ -51,6 +51,13 @@
     return valid;
   }
 
+  function checkAccountEmail(value) {
+    const error = CinemaForms.rules.email(value);
+    // Accounts created before stricter validation can still use their saved address.
+    if (error && getUsers().some(user => normalizeEmail(user.email) === normalizeEmail(value))) return '';
+    return error;
+  }
+
   function currentUser() {
     const session = store.read('cinema-session', null);
     if (!session || typeof session.email !== 'string') return null;
@@ -137,7 +144,7 @@
       const total = Number(record.total);
       const price = Number.isFinite(total) ? new Intl.NumberFormat('en-US').format(total) + ' KZT' : 'Price unavailable';
       const tier = { front: 'Front rows', middle: 'Standard', vip: 'VIP' }[record.tier] || 'Standard';
-      details.textContent = `${record.time || 'Time unavailable'} · ${tier} · ${price}`;
+      details.textContent = `${record.showtimeLabel || record.time || 'Time unavailable'} · ${tier} · ${price}`;
       const code = document.createElement('span');
       code.className = 'reservation-code';
       code.textContent = String(record.code || 'No code');
@@ -153,12 +160,19 @@
       const saved = document.createElement('p');
       saved.className = 'small mb-0 mt-2';
       saved.textContent = Number.isNaN(date.getTime()) ? 'Saved in this browser' : 'Saved on ' + date.toLocaleDateString('en-GB', { timeZone: 'Asia/Almaty', day: 'numeric', month: 'short', year: 'numeric' });
-      item.append(title, details, row, saved);
+      item.append(title, details);
+      if (record.note) {
+        const note = document.createElement('p');
+        note.className = 'small mb-2';
+        note.textContent = 'Special requests: ' + record.note;
+        item.append(note);
+      }
+      item.append(row, saved);
       list.append(item);
     });
   }
 
-  window.CinemaAuth = { currentUser, updateNavigation, logout };
+  window.CinemaAuth = { currentUser, updateNavigation, logout, checkAccountEmail };
   document.addEventListener('DOMContentLoaded', () => {
     const user = updateNavigation();
     renderProfile();
@@ -214,7 +228,7 @@
     login?.addEventListener('submit', event => {
       event.preventDefault();
       if (login.dataset.pending) return;
-      if (!CinemaForms.check(login, { loginEmail: CinemaForms.rules.email, loginPassword: CinemaForms.rules.password })) return;
+      if (!CinemaForms.check(login, { loginEmail: checkAccountEmail, loginPassword: CinemaForms.rules.password })) return;
       const email = normalizeEmail(document.getElementById('loginEmail').value);
       const password = document.getElementById('loginPassword').value;
       const users = getUsers();
